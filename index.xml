@@ -6,7 +6,16 @@
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Jan 2023 15:28:56 +0800</lastBuildDate><atom:link href="https://corsair-cxs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Jan 2023 16:16:25 +0800</lastBuildDate><atom:link href="https://corsair-cxs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2</title>
+      <link>https://corsair-cxs.github.io/posts/2/</link>
+      <pubDate>Wed, 11 Jan 2023 16:16:25 +0800</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/posts/2/</guid>
+      <description>2222 </description>
+    </item>
+    
     <item>
       <title>Test</title>
       <link>https://corsair-cxs.github.io/posts/test/</link>
