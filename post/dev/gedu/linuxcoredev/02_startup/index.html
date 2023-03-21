@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>创立门庭：编写和透视主程序 - 陈显森的GitBlog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Example test article that contains basic HTML elements for text formatting on the Web.">
+		<meta property="og:title" content="创立门庭：编写和透视主程序" />
+<meta property="og:description" content="Example test article that contains basic HTML elements for text formatting on the Web." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://corsair-cxs.github.io/post/dev/gedu/linuxcoredev/02_startup/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-16T00:00:00+00:00" />
+
+		<meta itemprop="name" content="创立门庭：编写和透视主程序">
+<meta itemprop="description" content="Example test article that contains basic HTML elements for text formatting on the Web."><meta itemprop="datePublished" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1816">
+<meta itemprop="keywords" content="Linux," />
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="创立门庭：编写和透视主程序"/>
+<meta name="twitter:description" content="Example test article that contains basic HTML elements for text formatting on the Web."/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/gedu.jpg">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">陈显森的博客</div>
+					<div class="logo__tagline">正心诚意，格物致知</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/main/getting-started/">
+				
+				<span class="menu__text">主页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/post/">
+				
+				<span class="menu__text">博客文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/categories/">
+				
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">创立门庭：编写和透视主程序</h1>
+			<p class="post__lead">创立门庭：编写和透视主程序</p>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-图灵时代">1. 图灵时代</a></li>
+    <li><a href="#2-ibm大型机">2. IBM大型机</a></li>
+    <li><a href="#3-两大空间">3. 两大空间</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-ibm父子进程机制">1. IBM父子进程机制</a></li>
+    <li><a href="#2-代码分析">2. 代码分析</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<p>本讲的主要内容是“创立门厅”，顾名思义是创立一个空间，并且程序在空间内活动</p>
+<blockquote>
+<p>本讲的主要内容是“创立门厅”，顾名思义是创立一个空间，并且程序在空间内活动</p>
+</blockquote>
+<h1 id="一-两大空间">一、 两大空间</h1>
+<blockquote>
+<p>“如何组织和优化空间布局， 是很多学科的永恒话题”</p>
+</blockquote>
+<h2 id="1-图灵时代">1. 图灵时代</h2>
+<p><img src="pic/image-20211014214752135.png" alt="image-20211014214752135"></p>
+<p><img src="pic/image-20211014214904990.png" alt="image-20211014214904990"></p>
+<ul>
+<li>CRT内存，图灵时代最牛的的记忆材料，电子打到屏幕上存在的静电残留，跟电流强度也有关系</li>
+<li>最早的内存页交换机制：要跑算法，当时的总内存很小，再怎么精打细算都完全不够用。
+<ul>
+<li>图灵提出虚拟内存的概念，磁鼓便宜，存储空间比CRT内存要大，</li>
+<li>磁鼓一个磁道相当于两个CRT内存页</li>
+<li>紧急的调到CRT内存中，暂时不用的数据放到磁鼓（外存）中</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-ibm大型机">2. IBM大型机</h2>
+<p>IBM大型机的时代，内存外存统一叫做storage。现在内存叫做memory，外存叫做storage</p>
+<p><img src="pic/image-20211014223711514.png" alt="image-20211014223711514"></p>
+<ul>
+<li>
+<p>swap共享内存<img src="pic/image-20211014224427596.png" alt="image-20211014224427596"></p>
+</li>
+<li>
+<p>节约物理内存的思想：用的进来，不用的先出去<img src="pic/image-20211014224447474.png" alt="image-20211014224447474"></p>
+</li>
+<li>
+<p>动态内存翻译:软件用的是虚地址，虚地址查表后翻译成真实地址，然后访问物理内存。</p>
+<ul>
+<li><img src="pic/image-20211014224543540.png" alt="image-20211014224543540"></li>
+</ul>
+</li>
+<li>
+<p>内存地址翻译<img src="pic/image-20211014225107012.png" alt="image-20211014225107012"></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>内存交换机制的内容要很熟悉，swap in、 swap out，需要花时间掌握（详细参考张银奎老师讲解的计算机系统原理），这是一个很重要的基础内容</strong></p>
+</blockquote>
+<ul>
+<li>虚空间的布局<img src="pic/image-20211014225629403.png" alt="image-20211014225629403"><img src="pic/image-20211014225655832.png" alt="image-20211014225655832"></li>
+</ul>
+<h2 id="3-两大空间">3. 两大空间</h2>
+<p><img src="pic/image-20211014225745721.png" alt="image-20211014225745721"></p>
+<blockquote>
+<p>上面是用户空间，下面内核空间。用户空间很多个，内核空间只有一个</p>
+</blockquote>
+<h1 id="二-为子请命">二、 为子请命</h1>
+<h2 id="1-ibm父子进程机制">1. IBM父子进程机制</h2>
+<p><img src="pic/image-20211014230102829.png" alt="image-20211014230102829"></p>
+<h2 id="2-代码分析">2. 代码分析</h2>
+<p><img src="pic/image-20211014230151600.png" alt="image-20211014230151600"></p>
+<p><img src="pic/image-20211014231050833.png" alt="image-20211014231050833"></p>
+<h1 id="三-建档立户">三、 建档立户</h1>
+<p><img src="pic/image-20211014231201231.png" alt="image-20211014231201231"></p>
+<p><img src="pic/image-20211014231218642.png" alt="image-20211014231218642"><img src="pic/image-20211014231225798.png" alt="image-20211014231225798"></p>
+<h5 id="forkc">fork.c</h5>
+<p>关键在于父子进程
+类似于人类的繁衍生息，复制基因给后代
+以父进程为模板复制一份，有很多copy动作</p>
+<p><img src="pic/image-20211014231255199.png" alt="image-20211014231255199"></p>
+<h5 id="进程描述符">进程描述符</h5>
+<p>软件世界中最核心的结构体 task_struct
+第一个copy动作
+很庞杂，抓关键即可
+表述每个进程在内核里的基本数据结构，用这个基本数据结构来管理进程</p>
+<p><img src="pic/image-20211014231328248.png" alt="image-20211014231328248"></p>
+<p>mm指针指向 *mm_struct,虚地址
+mm_struct:进程地址空间描述符（联想第一幅图-两大空间）
+指针pgd指向页表
+切进程使用不同的页表</p>
+<p>mm_struct还指向vma，有很多个虚拟内存区，每一个虚空间叫做vma，挂在mmap的链表上</p>
+<p><img src="pic/image-20211014231356515.png" alt="image-20211014231356515"></p>
+<h5 id="返璞归真-内存管理">返璞归真 内存管理</h5>
+<p>内核始终映射在所有空间里，mvs用来管理
+给每个进程一个虚空间——包括进程描述符、页表
+使用进程时，使用进程对应的页表，也同时使用对应的翻译（字典的目录)</p>
+<p><img src="pic/image-20211014231438322.png" alt="image-20211014231438322"></p>
+<h5 id="查表的过程">查表的过程</h5>
+<p><img src="pic/image-20211014231531577.png" alt="image-20211014231531577"></p>
+<p><img src="pic/17b446ada7365ef2785eb0fb.png" alt="17b446ada7365ef2785eb0fb"></p>
+<h1 id="四-添砖加瓦loader">四、 添砖加瓦(Loader)</h1>
+<p><img src="pic/b40849019e56d5c1335af3d5.png" alt="b40849019e56d5c1335af3d5"></p>
+<p>丰富进程、生机勃勃
+使用gdb慢动作查看添砖加瓦的动作</p>
+<p>gdb的关键指令：starti
+<img src="pic/image-20211014231806799.png" alt="image-20211014231806799"></p>
+<h5 id="starti命令">starti命令</h5>
+<p>在新进程初始第一条指令下设一个断点
+<img src="pic/fdc24ff38cbbb22eb9db208b.png" alt="fdc24ff38cbbb22eb9db208b"></p>
+<p><strong>pstree观察进程树</strong></p>
+<p><img src="pic/480645adaebb21a194fed9ad.png" alt="480645adaebb21a194fed9ad"></p>
+<h5 id="使用ps命令观察创建的gespace进程">使用!ps命令观察创建的gespace进程：</h5>
+<p>父进程发起（内核发起请求）-为子请命-内核创建空间
+下一步：新进程里面跑初始化过程，添砖加瓦，装内容（新房装修买家具）
+<img src="pic/f0984e9eb12bdef81d590b3f.png" alt="f0984e9eb12bdef81d590b3f"></p>
+<h5 id="cat命令观察进程空间">!cat命令观察进程空间</h5>
+<ul>
+<li>!cat /proc/2139/status， 查gespace进程状态</li>
+<li>proc这个虚拟文件系统会在后面教授如何写代码实现
+<img src="pic/681d406896d4a33e38243cab.png" alt="681d406896d4a33e38243cab">
+关键词：名字、ID、自己的内存区(内核放进来的东西)</li>
+</ul>
+<h6 id="查看当前进程空间里的内容-info-shared">查看当前进程空间里的内容 info shared</h6>
+<p>查看当前进程空间内的内容，
+创建好空间后，内核分配让进程自己跑的代码，也就是这个.so文件，ld-linux-x86-64.so<img src="pic/d95d4f6e967175119428d52b.png" alt="d95d4f6e967175119428d52b"></p>
+<h6 id="查看虚文件系统cat-proc2139maps">查看虚文件系统：!cat /proc/2139/maps</h6>
+<p><img src="pic/2bb54ea19ba090faf1591801.png" alt="2bb54ea19ba090faf1591801">
+创立好进程后，使用映射手段映射vma
+现在gcc在x86 64位下创建的应用程序起始地址很有意思，很多个5，这是gcc编译选项决定的</p>
+<ul>
+<li>操作系统loder放在比较高的位置 ldxxx.so</li>
+<li>loder有很多行，多个属性
+64位机，7后面最多有11个f
+最下面一行映射很高的系统调用，这里先不用深究
+倒数第二行是栈空间，</li>
+</ul>
+<h6 id="info-func">info func</h6>
+<p>列出所有函数，_dl_开头的代表dynamic loder，
+<img src="pic/0b054c3bad86f1e0bc8f8ea3.png" alt="0b054c3bad86f1e0bc8f8ea3"></p>
+<p><img src="pic/ec0b4b12833b822315e46818.png" alt="ec0b4b12833b822315e46818"></p>
+<h6 id="关键步骤埋断点">关键步骤埋断点</h6>
+<p>在启动函数下埋断点</p>
+<pre tabindex="0"><code>b _start:接下来要启动的启动函数
+b _libc_start_main：libc里面调用主函数的函数，
+// loder设置断点，调用so
+b main
+</code></pre><p><img src="pic/a20448fc9ce6c91de181bbb6.png" alt="a20448fc9ce6c91de181bbb6">
+continue
+<img src="pic/c74a40969d68a344a4d05838-16342250097361.png" alt="c74a40969d68a344a4d05838">
+查看info shared
+<img src="pic/f4e643a295f80e6d6b6b2aea.png" alt="f4e643a295f80e6d6b6b2aea">
+冯诺依曼架构，程序写硬盘里面，需要时放在内存中调用，因此需要loder引导到内存
+<img src="pic/cb824857bc42c77ebe0f949b.png" alt="cb824857bc42c77ebe0f949b"></p>
+<h6 id="ld在用户空间内跑不过与内核耦合度特别高内核对其进行特殊处理">ld在用户空间内跑，不过与内核耦合度特别高，内核对其进行特殊处理，</h6>
+<p>创建每个进程时就映射到每个进程中，新进程从loder开始跑起
+<img src="pic/9d8f4830b799145bfde7b4c3.png" alt="9d8f4830b799145bfde7b4c3"></p>
+<p>loder有一个_dl_start
+<img src="pic/0d8c4402a3b441bd8cd50480.png" alt="0d8c4402a3b441bd8cd50480">
+loder有两个名称: ld和dl
+dl是动态链接器的缩写</p>
+<p>链接分为编译器和运行期链接，运行时有些信息是动态的，rt_ld.c动态链接
+<img src="pic/83d64697a672ba3562a57d76.png" alt="83d64697a672ba3562a57d76"></p>
+<h5 id="回顾-添砖加瓦">回顾 添砖加瓦</h5>
+<p><img src="pic/59444d9eae23cec390a6fcf3.png" alt="59444d9eae23cec390a6fcf3"> 	1.  链接</p>
+<ol start="2">
+<li>从_dl_start开始</li>
+<li>加载动态库libc</li>
+<li>加载其他库（这些库的索引放在表里，加载时遍历这张表的依赖)</li>
+<li>libc_start_main(libc编译时设计注册的入口</li>
+<li>用户main函数，运行用户代码</li>
+</ol>
+<p>写程序要有操作系统观念，程序都是在操作系统上运行
+<img src="pic/5a5a47a7888b09d85dbd8c57.png" alt="5a5a47a7888b09d85dbd8c57"></p>
+<p><img src="pic/215447bd80add50b35fb118d.png" alt="215447bd80add50b35fb118d"></p>
+<h1 id="五-文件映射">五、 文件映射</h1>
+<h5 id="文件映射代码">文件映射代码</h5>
+<p><img src="pic/image-20211015080104997.png" alt="image-20211015080104997"></p>
+<p><img src="pic/image-20211015080121257.png" alt="image-20211015080121257"></p>
+<h6 id="性能对比">性能对比</h6>
+<p><img src="pic/image-20211015080153332.png" alt="image-20211015080153332"></p>
+<h6 id="常见函数">常见函数</h6>
+<p><img src="pic/image-20211015080207532.png" alt="image-20211015080207532"></p>
+<h1 id="六-子承父业">六、 子承父业</h1>
+<p><img src="pic/image-20211015080253394.png" alt="image-20211015080253394"></p>
+<p><img src="pic/image-20211015080336730.png" alt="image-20211015080336730"></p>
+<p><img src="pic/image-20211015080349351.png" alt="image-20211015080349351"></p>
+<p><img src="pic/image-20211015080359008.png" alt="image-20211015080359008"></p>
+<p><img src="pic/image-20211015080415368.png" alt="image-20211015080415368"></p>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/linux/" rel="tag">Linux</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Corsair-cxs avatar" src="/img/gedu.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 Corsair-cxs</span>
+	</div>
+	<div class="authorbox__description">
+		简介
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/0.startup/vscode_setup/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title"></p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/3.c&#43;&#43;%E8%87%AA%E5%8A%A8%E6%8E%A8%E6%96%AD%E5%92%8C%E5%BE%AA%E7%8E%AF/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">C&#43;&#43;自动推断和循环</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://bing.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://corsair-cxs.github.io/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/docs/getting-started/">主页</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/">【转】谈谈编译期优化</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/">C&#43;&#43; return等关键字编写规则</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/">C&#43;&#43; static的使用</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/">C&#43;&#43; std function和bind的用法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/">C&#43;&#43; vector与dequeue的特性</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/">C&#43;&#43; 降低复制时间</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/">C&#43;&#43; 局部变量使用规则</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/">C&#43;&#43;赋值和复制</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/">C&#43;&#43;构造析构</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/development/">Development</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">12</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (11)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mainpage/" title="MainPage">MainPage (3)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:1494089474@qq.com">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>1494089474@qq.com</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/Corsair-cxs" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Gitee" rel="noopener noreferrer" href="https://gitee.com/cxs5534" target="_blank">
+				<svg version="1.1" viewBox="0 0 24 24" width="0.200017in" height="0.200017in" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAABJ0AAASdAHeZh94AAACV0lEQVQ4T62UzWsTQRjGn012sx/5ampACR6sF+vm4Em8ebQYeghFvOgfUBX1YhHpxaNW8eJJ1INFRfRQoggqCuJBLAjVq9ZTsWljaEhCOpv9yMh2J9ndZDdWyMMedt73nd/OPO/McqqqYhSKjAJiM/ghIArQ8DQHcJ5sAIiCtojWItuxtsHRYJRNyYwlZbnH6gdZlFbXy3PF4uz5C+m8CkFAIEuMPbx4+frrVylZDgBZlDbK5dW378aOHXXSQ5SfPGSWlnoF7oooUNna+nzv/m4odpt4gTF25IJ0yzyeGZ88fYplgDe371i6zkUCOqtI0t0Xz+PdfflAba1dPHOWhYHCgYNfdE0S+k1kaUCRZJF3s+6b2ens37uPVW1UPtZrE7lck5Bmo8GCfvFR3gvyLpuKvQZxEZHnm4RcLUzXNiu1n7/6n83KfGG6SQirH2w/C+/INI2JvIpoBJk0C3l05LBqvFwCmE0BRjoJR7FoqEeGaXSrbIXW2XbKyoPFR9TQCdFgXxdqtfWZ+WvOzAjnvSFhIGq7JfL81z+VTzdvODMpsLG2Rs/NYjwDYF0jEc7dUMiKZLFVrf4G7X2UAkaLLBRnHAqAleVlQXDPZAgonTLqTWgaeuunFIqMRJwNTevJh/dKLseGwzxKJZBKsKoBXToxhWzWa5Ova5LkHvmBuW7gytTJZ6s/4qLorXG3FpeVW08fz4Fqmt2jPnFAvdNZ+f5tsVQiezLZZNLXM8D3z26bZots9zO6Yw6cIAiyKEb9jXeyPrNFnheTKSfxv/rHyd49bjQgAH8B3UnJFSBzxK8AAAAASUVORK5CYII="/></svg>
+				<span> &nbsp&nbsp Gitee</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="CSDN" rel="noopener noreferrer" href="https://blog.csdn.net/cxs5534" target="_blank">
+				<svg version="1.1" viewBox="0 0 24 24" width="0.200017in" height="0.200017in" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAABJ0AAASdAHeZh94AAAB7ElEQVQ4T+2UsarqMBzGU1t6tLYUh4Lgoo4u3QSlj9FJnAQ3cfAFnJzE0cFJF9/APoEuzg4udlBqFRS0Dhqbprlw4qna673H4UyX+039ku//S5r8CZPL5cBPKPITkH8cxP3pjAghrutCCBFCnucRQmiS4zie52VZDhW+BkEI9/u9pmm6rheLxXQ6/fHxQSvX6/V0Oq3X6yFWGEQI2e12mqYNh0NBEELLAgBSqVShUHBdNzT1BCKEbDabTqdTqVQec+Px+Hw+MwyDMVZV1TRNjgvv4MmfTqdGo/FIKZVKo9FIEASGYSgaY8xxXCKReFwJAHDvbIwxQsg0zSChqurhcBBFMaD8RffOhhCWy+UgOplMLMuSJOkdyhMIY5zNZm8YABaLRTQavZk3dN8Ry7Kr1Sooyefzx+MxaJ9vxSqKQkMsy85ms1qtRq2iKBhjwzAIIZ7nIYQun8IY8zxPM496ekYcx6lWq81mM0hcLhfDMJbLpeM4mUwmmUyaptlut0VRvCW+9HT9six3u13btnu9Hg3EYjFd1+k3Vb/f933/y911/zU6Fo/H5/N5q9WybZtaSZLolOd52+12MBhYlvV7Q75+IX3fhxBer1eEEMaYghiGYVlWkqSXtxnudFoTiUSET1H7jv4/td+cEgDgFwCe0OQBzCdoAAAAAElFTkSuQmCC"/></svg>
+				<span> &nbsp&nbsp CSDN </span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

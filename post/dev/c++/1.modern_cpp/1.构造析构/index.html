@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>C&#43;&#43;构造析构 - 陈显森的GitBlog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="C&#43;&#43;构造析构浅析">
+		<meta property="og:title" content="C&#43;&#43;构造析构" />
+<meta property="og:description" content="C&#43;&#43;构造析构浅析" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-16T00:00:00+00:00" />
+
+		<meta itemprop="name" content="C&#43;&#43;构造析构">
+<meta itemprop="description" content="C&#43;&#43;构造析构浅析"><meta itemprop="datePublished" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="3531">
+<meta itemprop="keywords" content="C&#43;&#43;," />
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;构造析构"/>
+<meta name="twitter:description" content="C&#43;&#43;构造析构浅析"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/gedu.jpg">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">陈显森的博客</div>
+					<div class="logo__tagline">正心诚意，格物致知</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/main/getting-started/">
+				
+				<span class="menu__text">主页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/post/">
+				
+				<span class="menu__text">博客文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/categories/">
+				
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">C&#43;&#43;构造析构</h1>
+			<p class="post__lead">C&#43;&#43;构造析构</p>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1单个类说明">1.单个类说明</a></li>
+    <li><a href="#2多个类说明">2.多个类说明</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#3例程">3.例程</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h2 id="1单个类说明">1.单个类说明</h2>
+<p>类的生命周期起始于构造函数,终止于析构函数.可以在栈(直接使用)上创建也可以在堆(new 产生)上创建,也可以限制允许在一种情况下创建.
+其中构造函数可以重载(不同的参数匹配不同的构造,达到多态目的),析构不能重载(析构本身无参).
+当创建一个类时c++会创建一下默认函数</p>
+<ul>
+<li>default构造函数   (无参构造函数)</li>
+<li>拷贝构造函数      (由相同的类创建本类)</li>
+<li>=重载操作符函数  (本类已经存在,用于对本类进行重新赋值,默认生成左值复制和右值复制) 右值复制 c++11才有)</li>
+<li>析构函数                 (生命周期结束时调用)</li>
+<li>移动构造函数        (c++11才有)</li>
+</ul>
+<p>类的动态创建可以分为2步：第一步分配内存,第二步调用构造函数.
+因此有二种不同的玩法:</p>
+<ul>
+<li>玩法一(普通玩法)：分配内存和调用构造一起       如：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{<span style="color:#66d9ef">int</span> m;};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A <span style="color:#f92672">*</span>pa <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> A(); <span style="color:#75715e">//堆上构造
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">delete</span> pa;     <span style="color:#75715e">//释放析构
+</span></span></span></code></pre></div><ul>
+<li>玩法二(高级玩法)：先分配内存  然后再调用构造函数     如：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>{<span style="color:#66d9ef">int</span> m;};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A <span style="color:#f92672">*</span>pa <span style="color:#f92672">=</span> (A <span style="color:#f92672">*</span>)malloc(<span style="color:#66d9ef">sizeof</span>(A) <span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>); <span style="color:#75715e">//先分配内存(可以分配很多)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">new</span>(<span style="color:#f92672">&amp;</span>pa[<span style="color:#ae81ff">0</span>]) A(); <span style="color:#75715e">//只调用构造(如果有内存已经分配好,可以重复利用  STD库 vector就是该原理)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">new</span>(<span style="color:#f92672">&amp;</span>pa[<span style="color:#ae81ff">1</span>]) A();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pa[<span style="color:#ae81ff">0</span>].<span style="color:#f92672">~</span>A();  <span style="color:#75715e">//只调用析构
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>pa[<span style="color:#ae81ff">1</span>].<span style="color:#f92672">~</span>A();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>free(pa);      <span style="color:#75715e">//释放内存
+</span></span></span></code></pre></div><h2 id="2多个类说明">2.多个类说明</h2>
+<p>类可以继承其它类(其它类称为父类或者超类). 也可以将其它类用于本类的成员(其它类称为成员类).</p>
+<h4 id="类的构造顺序">类的构造顺序</h4>
+<p>如果有父类递归构造,从最远的父类开始构造.
+构造本类时,按成员在本类的顺序(static 成员除外)依次构造成员.(如果构造函数里顺序不一致会警告,必须在构造函数中保持一致)</p>
+<h4 id="析构顺序">析构顺序</h4>
+<p>如果有父类先析构自己然后析构父类,依次析构(和构造相反).
+析构本类时,按成员在本类的反顺序依次析构(和构造相反).</p>
+<p><strong>注意：析构时不要调用虚函数！</strong></p>
+<h2 id="3例程">3.例程</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;signal.h&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;wutility/WUtils.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**构造函数   类第一次实例化时调用     (new一个对象  或者 其它实例对象)                  可以有多种构造函数,由输入参数匹配对应的构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 析构函数   实例消亡时调用                (delete 或者局部变量出了作用域  或者程序结束)     只能由一个析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * new 调用 构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * delete 调用析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *  malloc 和free 什么都不调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point</span> <span style="color:#75715e">//类名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> <span style="color:#75715e">//公共的 (外部都能调用)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">~</span>Point() <span style="color:#75715e">//析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;~Point&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Point() <span style="color:#f92672">:</span> m_x(<span style="color:#ae81ff">0</span>), m_y(<span style="color:#ae81ff">0</span>) <span style="color:#75715e">//默认构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;默认构造 Point&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Point(s32 xIn, s32 yIn) <span style="color:#f92672">:</span> m_x(xIn), m_y(yIn) <span style="color:#75715e">//有参构造函数 (尽量让输入参数和类的成员名字不同)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;有参数构造 Point&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        x = xIn; 可以再下面复制. 效率没有放:后面高(特别是类)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        y = yIn;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32 <span style="color:#a6e22e">x</span>() <span style="color:#75715e">//get方法 不需要写get (默认本类不能出现x变量!!)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32 <span style="color:#a6e22e">y</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setX</span>(s32 x) <span style="color:#75715e">//set 方法必须写set
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        m_x <span style="color:#f92672">=</span> x; <span style="color:#75715e">// m_x 私有的成员只能通过函数调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        WDBG(<span style="color:#e6db74">&#34;Point setX&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setY</span>(s32 y)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_x <span style="color:#f92672">=</span> y;
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;Point setY&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString() <span style="color:#66d9ef">const</span><span style="color:#75715e">//格式字符串 类的默认调用方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;[%, %]&#34;</span>, m_x, m_y);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span> <span style="color:#75715e">//私有的 (只有本类能调用)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    s32 m_x; <span style="color:#75715e">//类的成员必须以m_ 开头
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    s32 m_y;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Point2</span> <span style="color:#75715e">//和 Point类一样给下面测试用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>Point2() <span style="color:#75715e">//析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;~Point2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Point2() <span style="color:#f92672">:</span> m_x(<span style="color:#ae81ff">0</span>), m_y(<span style="color:#ae81ff">0</span>) <span style="color:#75715e">//默认构造函数(如果没有写该函数,必须传入指定参数才能构造)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;默认构造 Point2&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Point2(s32 xIn, s32 yIn) <span style="color:#f92672">:</span> m_x(xIn), m_y(yIn) <span style="color:#75715e">//有参构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;有参数构造 Point2&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        x = xIn;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        y =yIn;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32 <span style="color:#a6e22e">x</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32 <span style="color:#a6e22e">y</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setX</span>(s32 x)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_x <span style="color:#f92672">=</span> x;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setY</span>(s32 y)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_x <span style="color:#f92672">=</span> y;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;[%, %]&#34;</span>, m_x, m_y);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    s32 m_x;
+</span></span><span style="display:flex;"><span>    s32 m_y;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//使用 Point 类的成员
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PointTh</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>PointTh() <span style="color:#75715e">//析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;~PointTh&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    PointTh() <span style="color:#f92672">:</span> m_th(<span style="color:#ae81ff">0</span>) <span style="color:#75715e">//默认构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;默认构造 PointTh&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//注意构成函数中如果成员函数为有参构造函数需放于  :后面依次构造. 构造顺序为 成员的顺序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//如果类的成员需要使用默认构造函数可以不写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    PointTh(s32 xIn, s32 yIn, <span style="color:#66d9ef">float</span> thIn) <span style="color:#f92672">:</span> m_p(xIn, yIn), m_th(thIn)<span style="color:#75715e">//有参构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;有参数构造 PointTh&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        x = xIn;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        y =yIn;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTh</span>(s32 th)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_th <span style="color:#f92672">=</span> th;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32 <span style="color:#a6e22e">x</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_p.x(); <span style="color:#75715e">//使用成员方法调用  .为方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32 <span style="color:#a6e22e">y</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_p.y();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32 <span style="color:#a6e22e">th</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_th;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString() <span style="color:#75715e">//std:: 为命令空间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;[%, %,th:%]&#34;</span>, m_p.x(), m_p.y(), m_th); <span style="color:#75715e">//WString :: 为类的静态函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Point m_p;   <span style="color:#75715e">// 有类的成员(可以调用 Point类的public方法)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">float</span> m_th;  <span style="color:#75715e">//弧度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//继承Point类
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Point的public 方法为本类的方法(如果本类有相同名字则,父类不起作用)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PointThChild</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> Point
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>PointThChild() <span style="color:#75715e">//析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;~PointThChild&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    PointThChild() <span style="color:#f92672">:</span> Point() <span style="color:#75715e">//默认构造函数(空的默认构造函数可以不写)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;默认构造 PointThChild&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#if 0</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    PointThChild() //可以不写
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#endif
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//注意构成函数中如果父类为有参构造函数,需放:后的第一个位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//构造顺序  父类先构造,然后为本类的成员!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//析构的顺序 相反
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    PointThChild(s32 xIn, s32 yIn, <span style="color:#66d9ef">float</span> thIn) <span style="color:#f92672">:</span> Point(xIn, yIn), m_th(thIn)<span style="color:#75715e">//有参构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;有参数构造 PointThChild&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setTh</span>(s32 th)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_th <span style="color:#f92672">=</span> th;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setX</span>(s32 x) <span style="color:#75715e">//父类的setX不在起作用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;PointThChild setX&#34;</span>);
+</span></span><span style="display:flex;"><span>        Point<span style="color:#f92672">::</span>setX(x); <span style="color:#75715e">//可以显示调用父类的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;[%, %,th:%]&#34;</span>, x(), y(), m_th);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> m_th; <span style="color:#75715e">//弧度
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//表示 构造和析构的顺序
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Rect</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Rect(s32 x1, s32 y1, s32 x2, s32 y2) <span style="color:#f92672">:</span> m_p1(x1, y1), m_p2(x2, y2)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;[%, %, %, %]&#34;</span>, m_p1.x(), m_p1.y(), m_p2.x(), m_p2.y());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Point   m_p1;
+</span></span><span style="display:flex;"><span>    Point2  m_p2;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//new的使用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//(只有类中有自己new对象时.需要delete成员. 或者外部移交给本类的new对象)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RectNew</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">~</span>RectNew()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;~RectNew&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(m_p1 <span style="color:#f92672">!=</span> WNULL) <span style="color:#75715e">//由于为new产生必须析构. 防止内存泄露
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">delete</span> m_p1;
+</span></span><span style="display:flex;"><span>            m_p1 <span style="color:#f92672">=</span> WNULL;
+</span></span><span style="display:flex;"><span>            WDBG(<span style="color:#e6db74">&#34;~RectNew 释放内存&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    RectNew() <span style="color:#f92672">:</span> m_p1(WNULL)
+</span></span><span style="display:flex;"><span>    { <span style="color:#75715e">//默认构造函数 指针类型 强制为NULL
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        WDBG(<span style="color:#e6db74">&#34;RectNew 默认构造函数&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    RectNew(s32 x, s32 y)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        m_p1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Point(x, y);
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//有参数的 new 对象 后面为 构造函数填入对应的参数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;RectNew 有参数构造函数&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(m_p1 <span style="color:#f92672">==</span> WNULL)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;[NULL, NULL]&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;[%, %]&#34;</span>, m_p1<span style="color:#f92672">-&gt;</span>x(), m_p1<span style="color:#f92672">-&gt;</span>y());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    Point   <span style="color:#f92672">*</span>m_p1;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//不同构造函数出现的场景
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Str</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    ~Str() //默认析构函数 不写,则自动生成
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Str()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Str(<span style="color:#66d9ef">const</span> Str<span style="color:#f92672">&amp;</span> in) <span style="color:#f92672">:</span> m_st(in.m_st)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;Str 复制构造左值&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Str(Str<span style="color:#f92672">&amp;&amp;</span> in) <span style="color:#f92672">:</span> m_st(std<span style="color:#f92672">::</span>move(in.m_st))
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;Str 复制构造右值&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Str<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(<span style="color:#66d9ef">const</span> Str <span style="color:#f92672">&amp;</span>p)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;赋值 左值&#34;</span>);
+</span></span><span style="display:flex;"><span>        m_st <span style="color:#f92672">=</span> p.m_st;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Str<span style="color:#f92672">&amp;</span> <span style="color:#66d9ef">operator</span><span style="color:#f92672">=</span>(Str <span style="color:#f92672">&amp;&amp;</span>p)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;赋值 右值&#34;</span>);
+</span></span><span style="display:flex;"><span>        m_st <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(p.m_st);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">*</span><span style="color:#66d9ef">this</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string m_st;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*******
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">c++中创建一个类默认生成的函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> •default构造函数(无参构造函数)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> •拷贝构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> •=重载操作符函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> •析构函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> •移动构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//默认构造的生成
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Ct</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    s32         m_val;
+</span></span><span style="display:flex;"><span>    s32         m_valB;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string m_st;
+</span></span><span style="display:flex;"><span>    Str         m_out;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;m_val[%],m_valB[%],m_st[%],m_out[%]&#34;</span>,
+</span></span><span style="display:flex;"><span>                                m_val, m_valB, m_st, m_out.m_st);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//结构体和 class 等同
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//区别:结构体 默认为 public  class 默认为private
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">St</span>
+</span></span><span style="display:flex;"><span>{   <span style="color:#75715e">//默认都是public
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    s32         m_val;
+</span></span><span style="display:flex;"><span>    s32         m_valB;
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string m_st;
+</span></span><span style="display:flex;"><span>    Str         m_out;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>string toString() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> WString<span style="color:#f92672">::</span>formats(<span style="color:#e6db74">&#34;m_val[%],m_valB[%],m_st[%],m_out[%]&#34;</span>,
+</span></span><span style="display:flex;"><span>                                m_val, m_valB, m_st, m_out.m_st);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//extern void tsb();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//    tsb();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        Point p1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;p1=%&#34;</span>, p1);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//调用无参数的构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        Point p2(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;p2=%&#34;</span>, p2);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//调用有参数的构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        PointTh p3(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2.0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;p3=%&#34;</span>, p3);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//成员函数 m_p 先构成后为 m_th
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//如果成员函数为基本类型 不调用构造函数!!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        PointTh p4(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2.0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;p4=%&#34;</span>, p4);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        Point p5;
+</span></span><span style="display:flex;"><span>        PointTh p6(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">3.0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;p5=%, p6=%&#34;</span>, p5, p6);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//构造顺序 为 p5 --&gt; p6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//析构顺序为 p6--&gt; p5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        Rect r(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;rect=%&#34;</span>, r);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        Rect b; //没写默认构造函数编译失败
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//析构顺序为 m_p2--&gt; m_p1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        PointThChild p(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;PointThChild p=%&#34;</span>, p);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        p.setY(<span style="color:#ae81ff">10</span>); <span style="color:#75715e">//调用父类的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        p.setX(<span style="color:#ae81ff">10</span>); <span style="color:#75715e">//调用子类的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        WDBG(<span style="color:#e6db74">&#34;PointThChild p=%&#34;</span>, p);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        RectNew rn1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;rn1=%&#34;</span>, rn1);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        RectNew rn2(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;rn1=%&#34;</span>, rn2);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    { <span style="color:#75715e">//默认生成的函数和 左值右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Ct a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        a.m_val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        a.m_valB <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        a.m_st <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123&#34;</span>;
+</span></span><span style="display:flex;"><span>        a.m_out.m_st <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;out&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;Ct a=%&#34;</span>, a);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Ct b(a); <span style="color:#75715e">//默认生成的复制构造函数  左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;Ct a=%&#34;</span>, b);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Ct c;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> b;  <span style="color:#75715e">//默认生成的赋值函数 左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;Ct c=%&#34;</span>, c);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            Ct d(std<span style="color:#f92672">::</span>move(c));  <span style="color:#75715e">//默认生成的复制构造函数 右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            WDBG(<span style="color:#e6db74">&#34;Ct d(std::move(c)=%&#34;</span>, d);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            Ct h;
+</span></span><span style="display:flex;"><span>            WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            h <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(d);  <span style="color:#75715e">//默认生成的赋值函数 右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            WDBG(<span style="color:#e6db74">&#34; Ct h = std::move(d)=%&#34;</span>, h);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    { <span style="color:#75715e">//默认生成的函数和 左值右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        St a;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        a.m_val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        a.m_valB <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>        a.m_st <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;123&#34;</span>;
+</span></span><span style="display:flex;"><span>        a.m_out.m_st <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;out&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;St a=%&#34;</span>, a);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        St b(a); <span style="color:#75715e">//默认生成的复制构造函数  左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;St a=%&#34;</span>, b);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        St c;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> b;  <span style="color:#75715e">//默认生成的赋值函数 左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>        WDBG(<span style="color:#e6db74">&#34;St c=%&#34;</span>, c);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            St d(std<span style="color:#f92672">::</span>move(c));  <span style="color:#75715e">//默认生成的复制构造函数 右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            WDBG(<span style="color:#e6db74">&#34;St d(std::move(c)=%&#34;</span>, d);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            St h;
+</span></span><span style="display:flex;"><span>            WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            h <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(d);  <span style="color:#75715e">//默认生成的赋值函数 右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            WDBG(<span style="color:#e6db74">&#34;St h = std::move(d)=%&#34;</span>, h);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\r\n</span><span style="color:#e6db74">&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.813] [main.cpp::main:668] 课程开始
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:18] 默认构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:371] p1=[0, 0]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:376]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:23] 有参数构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:381] p2=[3, 4]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:386]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:23] 有参数构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::PointTh:129] 有参数构造 PointTh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:391] p3=[4, 5,th:2.000]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~PointTh:118] ~PointTh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:397]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:23] 有参数构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::PointTh:129] 有参数构造 PointTh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:402] p4=[4, 5,th:2.000]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~PointTh:118] ~PointTh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:405]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:18] 默认构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:23] 有参数构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::PointTh:129] 有参数构造 PointTh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:411] p5=[0, 0], p6=[3, 4,th:3.000]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~PointTh:118] ~PointTh
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:418]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:23] 有参数构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point2:76] 有参数构造 Point2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:423] rect=[1, 2, 3, 4]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point2:66] ~Point2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:432]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:23] 有参数构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::PointThChild:192] 有参数构造 PointThChild
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:435] PointThChild p=[1, 2,th:3.000]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::setY:47] Point setY
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::setX:202] PointThChild setX
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::setX:41] Point setX
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:440] PointThChild p=[10, 2,th:3.000]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~PointThChild:172] ~PointThChild
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:443]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::RectNew:253] RectNew 默认构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:448] rn1=[NULL, NULL]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~RectNew:241] ~RectNew
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:451]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Point:23] 有参数构造 Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::RectNew:261] RectNew 有参数构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:457] rn1=[2, 3]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~RectNew:241] ~RectNew
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~Point:13] ~Point
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::~RectNew:247] ~RectNew 释放内存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:461]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:462]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:463]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:473] Ct a=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Str:292] Str 复制构造左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:477]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:478] Ct a=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::operator=:302] 赋值 左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:484]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:485] Ct c=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:488]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Str:297] Str 复制构造右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:491] Ct d(std::move(c)=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:494]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::operator=:310] 赋值 右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:497]  Ct h = std::move(d)=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:501]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:502]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:503]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:513] St a=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Str:292] Str 复制构造左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:517]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:518] St a=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::operator=:302] 赋值 左值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:524]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:525] St c=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:528]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::Str:297] Str 复制构造右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:531] St d(std::move(c)=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:534]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::operator=:310] 赋值 右值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:537] St h = std::move(d)=m_val[1],m_valB[2],m_st[123],m_out[out]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">[DBG] [2021-07-15 15:20:20.815] [main.cpp::test:543]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** 信号退出回调
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param in signum 信号数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @return 无
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> **/</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">closeHandler</span>(<span style="color:#66d9ef">int</span> signum)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    WARG_NO_USE(signum);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> save_errno <span style="color:#f92672">=</span> errno;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    setSysExit();
+</span></span><span style="display:flex;"><span>    errno <span style="color:#f92672">=</span> save_errno;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">**</span>argv)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    signal(SIGPIPE, SIG_IGN); <span style="color:#75715e">//忽略网络异常
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    signal(SIGINT, closeHandler); 
+</span></span><span style="display:flex;"><span>    signal(SIGTERM, closeHandler); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    WDBG(<span style="color:#e6db74">&#34;课程开始&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    test();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/c&#43;&#43;/" rel="tag">C&#43;&#43;</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Corsair-cxs avatar" src="/img/gedu.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 Corsair-cxs</span>
+	</div>
+	<div class="authorbox__description">
+		简介
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/4.%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">C&#43;&#43;函数的参数与返回</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">C&#43;&#43;赋值和复制</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

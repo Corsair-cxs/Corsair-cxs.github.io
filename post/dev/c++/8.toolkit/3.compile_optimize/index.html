@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>【转】谈谈编译期优化 - 陈显森的GitBlog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="谈谈编译期优化">
+		<meta property="og:title" content="【转】谈谈编译期优化" />
+<meta property="og:description" content="谈谈编译期优化" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-16T00:00:00+00:00" />
+
+		<meta itemprop="name" content="【转】谈谈编译期优化">
+<meta itemprop="description" content="谈谈编译期优化"><meta itemprop="datePublished" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="6095">
+<meta itemprop="keywords" content="C&#43;&#43;," />
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【转】谈谈编译期优化"/>
+<meta name="twitter:description" content="谈谈编译期优化"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/gedu.jpg">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">陈显森的博客</div>
+					<div class="logo__tagline">正心诚意，格物致知</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/main/getting-started/">
+				
+				<span class="menu__text">主页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/post/">
+				
+				<span class="menu__text">博客文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/categories/">
+				
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">【转】谈谈编译期优化</h1>
+			<p class="post__lead">【转】谈谈编译期优化</p>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-项目代码的构建过程">1. 项目代码的构建过程</a></li>
+    <li><a href="#2-面对的困境">2. 面对的困境</a></li>
+    <li><a href="#3-构建优化的收益">3. 构建优化的收益</a></li>
+    <li><a href="#4-代码编译过程">4. 代码编译过程</a>
+      <ul>
+        <li><a href="#预处理-preprocessing"><strong>预处理 (Preprocessing)</strong></a></li>
+        <li><a href="#编译compilation"><strong>编译（Compilation）</strong></a></li>
+        <li><a href="#汇编assembly">汇编（Assembly）</a></li>
+        <li><a href="#链接linking"><strong>链接（Linking）</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#5-编译器优化选项">5. 编译器优化选项</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1找热点hotpoint">1.找热点（hotpoint）</a></li>
+    <li><a href="#2聚焦热点">2.聚焦热点</a>
+      <ul>
+        <li><a href="#gcc">GCC</a></li>
+        <li><a href="#clang">Clang</a></li>
+      </ul>
+    </li>
+    <li><a href="#3重现问题">3.重现问题</a>
+      <ul>
+        <li><a href="#其他影响因素">其他影响因素</a></li>
+        <li><a href="#工具链因素">工具链因素</a></li>
+      </ul>
+    </li>
+    <li><a href="#4问题根因">4.问题根因</a></li>
+    <li><a href="#5解决方案">5.解决方案</a>
+      <ul>
+        <li><a href="#减小容器的规模"><strong>减小容器的规模</strong></a></li>
+        <li><a href="#升级编译工具"><strong>升级编译工具</strong></a></li>
+        <li><a href="#避免聚合初始化"><strong>避免聚合初始化</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#6编译优化最佳实践">6.编译优化最佳实践</a>
+      <ul>
+        <li><a href="#只引入必要的头文件"><strong>只引入必要的头文件</strong></a></li>
+        <li><a href="#拆分-lib"><strong>拆分 lib</strong></a></li>
+        <li><a href="#编译任务编排"><strong>编译任务编排</strong></a></li>
+        <li><a href="#优化模板实例化"><strong>优化模板实例化</strong></a></li>
+        <li><a href="#编码角度---针对接口编程"><strong>编码角度 - 针对接口编程</strong></a></li>
+        <li><a href="#清理代码"><strong>清理代码</strong></a></li>
+        <li><a href="#优化编译链接选项"><strong>优化编译、链接选项</strong></a></li>
+        <li><a href="#升级工具链"><strong>升级工具链</strong></a></li>
+        <li><a href="#增加硬件投入升级硬件非必选"><strong>增加硬件投入/升级硬件（非必选）</strong></a></li>
+        <li><a href="#使用-c20-module-特性非必选"><strong>使用 C++20 Module 特性（非必选）</strong></a></li>
+        <li><a href="#其他"><strong>其他</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#7小结">7.小结</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="谈谈编译期优化">谈谈编译期优化</h1>
+<blockquote>
+<p>代码的维护是一个长期且持久的过程，而大型C++工程项目都会面临编译耗时较长的问题。不管是开发、测试，亦或是持续集成阶段，编译行为无处不在。降低编译时间对提高研发效率来说意义非凡。<!-- raw HTML omitted -->
+文章来源:</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/JUhM0Ww1y1RyyA9ZF0R1rQ">谈谈编译期优化（上）</a></li>
+<li><a href="https://mp.weixin.qq.com/s/CvLWJp2Jv4UgTGAM6x554Q">谈谈编译期优化（下）</a></li>
+</ul>
+</blockquote>
+<p>项目优化一定要先明确目标，找准方向了再针对问题瓶颈 “对症下药”，而不要 “一味盲干”。要知道选择大于努力 :)
+大多数 C++ 工程师在项目中除了完成既定任务以外，关于程序性能优化方面，考虑更多的主要还是集中在程序运行期的性能优化。</p>
+<p>关于运行期的性能优化一般从 2 个维度解决：空间和时间。同时市面上也有很多工具帮助工程师检测程序性能，比如 google benchmark、profile、vtune 和 varigrand 等等。但这些都不在本章讨论的范围，本章重点关注<strong>程序的编译期优化</strong>。</p>
+<p>可能会有人好奇，为啥要关心编译期优化？那不是简单一行命令或者点击一个 Run 的 button，剩下的都是 IDE 或者编译器该干的活么？但是随着新功能的增多，代码量的累积和几代人的传承，很难保证代码在短时间内能完成编译，有时一杯咖啡的时间都不够，可能需要等上几十分钟，甚至几个小时。可谓程序开发的痛点之一。谁都希望代码能跑得快，前提是能编得过，且编的快！</p>
+<h2 id="1-项目代码的构建过程">1. 项目代码的构建过程</h2>
+<p>要对构建进行优化，就需要熟悉项目的构建过程，才能有针对性地对其中的热点进行性能优化提升。而反观日常的开发过程中，代码的构建主要分为以下几个过程：</p>
+<blockquote>
+<p>拉取代码（1） -&gt; <strong>执行编译（2）</strong> -&gt; 打包上传（3） -&gt; <strong>CI 编译&amp;自动化测试（4）</strong> -&gt; 合入代码库（5）</p>
+</blockquote>
+<p>上述的几个过程中，我们能做的优化工作大部分集中于（2）和（4）。</p>
+<h2 id="2-面对的困境">2. 面对的困境</h2>
+<p>从开发者角度来看：</p>
+<ul>
+<li>C++ 编译过程本来就很慢</li>
+<li>随着项⽬规模的增⻓，构建耗时越来越⻓</li>
+</ul>
+<p>从 CI 角度来看：</p>
+<ul>
+<li>非增量（全量）编译会导致每次都需要编译所有的组件或模块</li>
+<li>模块间过多的依赖和线性的编译顺序导致构建时间过长</li>
+<li>用于构建的机器资源不⾜将导致构建任务需要排队等待</li>
+<li>如果构建失败，将重排构建队列，重新多次进入队列会极⼤影响⼯作的节奏</li>
+</ul>
+<h2 id="3-构建优化的收益">3. 构建优化的收益</h2>
+<ul>
+<li>缩短等待时间意味着减少无效等待时间，进而提升研发效率</li>
+<li>快速高效构建的⼯作可以降低硬件成本</li>
+</ul>
+<h2 id="4-代码编译过程">4. 代码编译过程</h2>
+<p>程序分为编译期和运行期。对于 C++ 程序来说，编译期分为以下几个阶段：</p>
+<blockquote>
+<p>预编译处理 -&gt; 编译 -&gt; 汇编 -&gt; 链接</p>
+</blockquote>
+<p>以一个简单的程序 hello.cpp 为例。</p>
+<p><img src="img/Compiler_optimization_techniques/640.png" alt="图片"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// hello.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;hello world !&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>C/C++ 语言编写程序转换成处理器能够执行的二进制代码的过程，包括以下 4 个步骤：</p>
+<h3 id="预处理-preprocessing"><strong>预处理 (Preprocessing)</strong></h3>
+<p>预处理的过程包括：
+[1] 将所有的 <code>#define</code> 删除，并展开所有的宏定义，同时处理所有有的条件预编译指令，比如 <code>#if</code>、<code>#ifdef</code>、<code>#elif</code>、<code>#else</code>、<code>#endif</code> 等。
+[2] 处理 <code>#include</code> 预编译指令，将被包含的文件插入到该预编译指令的位置。
+[3] 删除所有注释 “//” 和 “/* */”。
+[4] 添加行号和文件标识，以便编译时产生调试用的行号和编译错误警告行号。
+[5] 保留所有 <code>#pragma</code> 编译器指令，因为后续过程需要使用。</p>
+<p>使用 GCC 进行预处理的命令如下：</p>
+<blockquote>
+<p>(GCC 的选项 <code>-E</code> 将源文件 hello_world.cpp 预处理生成 hello.i)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ -E hello.cpp -o hello.i
+</span></span></code></pre></div><h3 id="编译compilation"><strong>编译（Compilation）</strong></h3>
+<p>编译过程就是对预处理完的文件进行词法分析、语法分析、语义分析以及优化后生成相应的汇编代码。</p>
+<p>使用 GCC 进行编译的命令如下：</p>
+<blockquote>
+<p>(GCC 的选项 <code>-S</code>将预处理生成的文件 hello.i 编译生成汇编程序 hello.s)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ -S hello.i -o hello.s
+</span></span></code></pre></div><h3 id="汇编assembly">汇编（Assembly）</h3>
+<p>汇编过程对汇编代码进行处理，生成处理器能识别的指令，保存在后缀为 <code>.o</code> 的目标文件中。
+当程序由多个源代码文件构成，每个文件（编译单元）都要先完成汇编工作，生成 <code>.o</code> 的目标文件后，才能进行下一步链接。其中的目标文件已经是最终程序的一部分，但在完成链接前还不能执行。
+使用 GCC 进行汇编的命令如下：</p>
+<blockquote>
+<p>(GCC 的选项 <code>-c</code> 将编译生成的文件 hello.s 汇编生成目标文件 hello.o)</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ -c hello.s -o hello.o
+</span></span></code></pre></div><p><strong>注意</strong>：目标文件 hello.o 为 ELF(Executable and Linkable Formate) 格式的可重定向文件。</p>
+<h3 id="链接linking"><strong>链接（Linking）</strong></h3>
+<p>链接也分为<strong>静态链接</strong>和<strong>动态链接</strong>，定义如下：</p>
+<h4 id="静态链接">静态链接</h4>
+<p>静态链接是指在编译阶段直接把静态库加入到可执行文件中去，因此可执行文件会比较大。链接器将函数的代码从其所在地（不同的目标文件或静态链接库中）拷贝到最终的可执行程序中。运行时也就不再需要静态库文件，其后缀名一般为“.a”。
+为创建可执行文件，链接器必须要完成的主要任务是：<strong>符号解析</strong>（把目标文件中符号的定义和引用关联起来）<strong>和重定位</strong>（把符号定义和内存地址对应起来，然后修改所有对符号的引用）。</p>
+<h4 id="动态链接">动态链接</h4>
+<p>动态链接是指在链接阶段仅仅只加入一些描述信息，程序执行时，再从系统中把动态库加载到内存中去。动态库一般后缀名为“.so”。</p>
+<p><strong>Tips</strong>：在Linux系统中，可以用 <strong>ldd</strong> 命令查看一个可执行程序依赖的共享库。
+链接器链接后生成的最终文件为 ELF 格式的可执行文件，一个 ELF 格式的可执行文件通常会在链接时分为不同的段，常见的段如 <code>.text</code>、<code>.data</code>、<code>.rodata</code>、<code>.bss</code> 等。</p>
+<h2 id="5-编译器优化选项">5. 编译器优化选项</h2>
+<p>编译器优化级别大体如下：</p>
+<ul>
+<li>O0（默认选项）：不开启优化，方便功能调试</li>
+<li>Og：方便调试的优化选项（比 `O1` 更保守）</li>
+<li>O1：保守的优化选项，打开了四十多个优化选项</li>
+<li>O2：常用的发布优化选项，在 `O1` 的基础上额外打开了四十多个优化选项，包括自动内联等规则</li>
+<li>Os：产生较小代码体积的优化选项（比 `O2` 更保守）</li>
+<li>O3：较为激进的优化选项（对错误编码容忍度最低），在 `O2` 的基础上额外打开了十多个优化选项</li>
+<li>Ofast：打开可导致不符合IEEE浮点数等标准的性能优化选项。</li>
+</ul>
+<p>当没有开启优化时，编译器一般会按代码来生成二进制代码，以方便调试。一旦打开优化，取决于不同的优化选项，编译器可以对代码进行各种不同的变形，以减少时间（空间）开销。</p>
+<p>一般来说， 通常要使用 GDB 调试 C/C++ 的程序，首先在编译时，我们必须要把调试信息加到可执行文件中。使用编译器的 <strong>-g</strong> 参数可以做到这一点，比如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>g++ -g hello_world.cpp -o hello
+</span></span></code></pre></div><p>加上 <strong>-g</strong> 选项以后，GCC 在编译时会完成以下操作：</p>
+<ul>
+<li>创建符号表，符号表包含了程序中使用的变量名称的列表。</li>
+<li>关闭所有的优化机制，以便程序执行过程中严格按照原来的 C++ 代码进行。</li>
+</ul>
+<p>如果没有 <code>-g</code>，你将看不见程序的函数名、变量名，所代替的全是运行时的内存地址。</p>
+<p>对于日常项目中，由于工具链中已经对编译器优化做了配置，所以大多数情况下，我们只需要关注 `O2`、`O0` 和 <code>-g</code> 就可以了，这里只是做个简单的补充。</p>
+<hr>
+<h1 id="编译期优化的常见思路">编译期优化的常见思路</h1>
+<p>之所以要在考量 runtime 性能瓶颈之余，还要关注编译期的性能优化，是因为在实际项目中，CI 发现项目中的一个模块在 GCC 的 `dbg` 模式下的编译时间长达 40 分钟，以至于引发编译 timeout 的问题，这个问题直接阻塞了其他模块的正常编译。于是 CI 组小伙伴发来友情问候，热情邀请参与调查其中原因，所以后续故事就此展开。</p>
+<h2 id="1找热点hotpoint">1.找热点（hotpoint）</h2>
+<p>方法很简单，首先编译各个模块，对比在 <strong>dbg</strong> 模式和 <strong>opt</strong> 模式下构建的消耗时长，找到问题模块。其中需要对每个模块多次编译，对其时长求平均和最大值，并以柱状图显示（方便可视化对比）。笔者的开发环境是 Linux，编译器主要是 GCC 和 Clang。</p>
+<p>这个过程比较耗时，需要逐个模块编译和对比编译耗时。如果可以的话，建议可以将该过程做成 pipeline，可以以图标的形式自动化地展示编译耗时，也方便以后对构建过程进行监测。</p>
+<h2 id="2聚焦热点">2.聚焦热点</h2>
+<p>通过上一步的编译和比较，找到了最耗时的模块。既然找到了症结所在，那么剩下的工作就相对容易了。于是聚焦热点，同时搜罗市面上的工具，进一步展开细化分析。</p>
+<h3 id="gcc">GCC</h3>
+<p>GCC 在编译耗时方面的工具并不多，一般只是简单统计编译的时长。常用的主要有 <strong>time</strong> 和 <strong>-ftime-report</strong>，（以文件 test.cpp 为例）即</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ time g++ -O3 -std<span style="color:#f92672">=</span>c++11 test.cpp
+</span></span></code></pre></div><p>运行结果如下：
+<img src="img/Compiler_optimization_techniques/640-1672151503201-6.png" alt="图片"></p>
+<pre tabindex="0"><code>$ g++ -O3 -std=c++11 -ftime-report test.cpp
+</code></pre><p>运行结果如下：
+<img src="img/Compiler_optimization_techniques/640-1672151511614-9.png" alt="图片"></p>
+<h3 id="clang">Clang</h3>
+<p>相比 GCC，Clang 在这方面的工具要便捷得多，可以细化到具体函数和类的编译耗时，常用的工具有 <strong>-ftime-trace</strong>。</p>
+<p>下面指令编译完成之后，会生成对应文件的 *.json 文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ clang++-11 -c -ftime-trace -std<span style="color:#f92672">=</span>c++11 -O3 test.cpp
+</span></span></code></pre></div><p>在 chrome 地址栏中敲入 chrome://tracing，加载之前编译的 json 文件，效果如下</p>
+<p><img src="img/Compiler_optimization_techniques/640-1672151548211-12.gif" alt="图片"></p>
+<h2 id="3重现问题">3.重现问题</h2>
+<p>经过上面 2 步，大致可以定位问题了，一般流程是先用 GCC 的工具编译有个直观大致感觉，然后使用 Clang 的根据具体分析对应的代码。我们可以发现引发编译耗时的问题代码如下：</p>
+<p>（因为保密因素，这里的问题代码仅仅是脱敏和简化后的问题代码）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// test.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;array&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constexpr</span> std<span style="color:#f92672">::</span>size_t size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4096</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">S</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> f;
+</span></span><span style="display:flex;"><span>        S() <span style="color:#f92672">:</span> f(<span style="color:#ae81ff">0.0f</span>) {}
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span>S, size<span style="color:#f92672">&gt;</span> a{};  <span style="color:#75715e">// &lt;-- note aggregate initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> e : a)
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cerr <span style="color:#f92672">&lt;&lt;</span> e.f;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="其他影响因素">其他影响因素</h3>
+<h4 id="容器大小">容器大小</h4>
+<p>除了上述的一些原因以外，容器的 `size` 大小也会对最终的编译时长有影响，下面的是不同 `size` 大小情况下对比</p>
+<blockquote>
+<p>Size : 4096 → 2048 → 1024 (Linear Growth)</p>
+</blockquote>
+<p><img src="img/Compiler_optimization_techniques/640-1672151673356-15.png" alt="图片"></p>
+<h3 id="工具链因素">工具链因素</h3>
+<p>同时，我们也发现在不同的 GCC 版本下，同样的代码的编译耗时也不一样，GCC12.0 上的代码编译就比 GCC9.0 的要快得多。</p>
+<h2 id="4问题根因">4.问题根因</h2>
+<p>经过调研后我们知道，这个问题是由于上述代码中的 <strong>array</strong> 在初始化发生的，而究其根因是因为 <strong>{}</strong> 的存在，会促使编译器进行聚合初始化（aggregate initialization）,关于聚合初始化的细节这里就不作赘述，感兴趣的同学可以参考链接 https://en.cppreference.com/w/cpp/language/aggregate_initialization，或自行搜索关键词。</p>
+<p>同时，这个<a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=92385">关于聚合初始化的问题</a>，<a href="https://stackoverflow.com/questions/37260097/stdarray-with-aggregate-initialization-on-g-generates-huge-code">GCC12.0 已经修复这个问题</a>。这也就是为什么 GCC12.0 的编译速度比 GCC 9.0 要快的原因
+<a href="https://godbolt.org">Compiler Explorer</a> 上代码编译的对比结果如下，可以明显看到 GCC12.0 编译后的代码量要精简很多，去除了 GCC 9.0 里大量重复的寄存器值的复制和搬移 mov DWORD PTR [rsp+4], 0x00000000。</p>
+<p><img src="img/Compiler_optimization_techniques/image-20221227224323254.png" alt="image-20221227224323254"></p>
+<h2 id="5解决方案">5.解决方案</h2>
+<p>既然知道了原因，关于这个问题的相应的解决方案如下：</p>
+<h3 id="减小容器的规模"><strong>减小容器的规模</strong></h3>
+<p>容器的规模在初始化时候的表现是线性增长，解决途径就是</p>
+<ul>
+<li>减小容器的规模（4096 -&gt; 1024）</li>
+<li>考虑更换可动态增长容器，将上述的 `array` 换成诸如 `vector</li>
+</ul>
+<h3 id="升级编译工具"><strong>升级编译工具</strong></h3>
+<p>GCC12.0 已经解决此类问题，如果可以的话，考虑升级编译工具，一劳永逸。</p>
+<h3 id="避免聚合初始化"><strong>避免聚合初始化</strong></h3>
+<p>如果前面的 2 个方案都被否定的情况下，考虑在 GCC9.0 环境下使用修改代码的方式解决问题。
+上述的代码修改如下（这里只做简单演示，不做安全性和鲁棒性考虑）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;array&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constexpr</span> std<span style="color:#f92672">::</span>size_t size <span style="color:#f92672">=</span> <span style="color:#ae81ff">4096</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">S</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">float</span> f;
+</span></span><span style="display:flex;"><span>        S() <span style="color:#f92672">:</span> f(<span style="color:#ae81ff">0.0f</span>) {}
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Collections</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        Collections() <span style="color:#f92672">:</span> a() {}
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>array<span style="color:#f92672">&lt;</span>S, size<span style="color:#f92672">&gt;</span> a;  <span style="color:#75715e">// &lt;-- note none-aggregate initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    };
+</span></span><span style="display:flex;"><span>    Collections c;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span><span style="color:#f92672">&amp;</span> e : c.a)
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>cerr <span style="color:#f92672">&lt;&lt;</span> e.f;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="6编译优化最佳实践">6.编译优化最佳实践</h2>
+<p>好了，经过一番折腾上述的问题也告一段落。那么，对于工程师来说，日常的开发过程中有编译期优化有什么最佳实践呢？我稍微整理了一下，现在分享给大家。</p>
+<p><img src="img/Compiler_optimization_techniques/640-1672151881120-21.jpeg" alt="图片"></p>
+<h3 id="只引入必要的头文件"><strong>只引入必要的头文件</strong></h3>
+<ul>
+<li>清理重复include
+为了避免 <strong>include</strong> 多余的头文件导致预编译后源代码膨胀，增加编译时间。
+针对 C/C++ 的工程，谷歌开源了一个工具 IWYU (<a href="https://github.com/include-what-you-use/include-what-you-use">https://github.com/include-what-you-use/include-what-you-use</a>)，可以项目中帮助检查，只 **include **必要的头文件。</li>
+<li>使用前向声明代替 include
+针对复杂头文件，可以通过前向声明(forward declaration) (<a href="https://en.wikipedia.org/wiki/Forward_declaration">https://en.wikipedia.org/wiki/Forward_declaration</a>)数据类型，避免直接 #include 类型定义的头文件。</li>
+<li>预编译头文件（PCH）
+要使用预编译头，必须指定一个头文件，这个头文件包含不会经常改变的代���和其他的头文件，用一个 .cpp 包含它并编译生成一个 .pch 文件，在接下来编译到需要 include 这个头文件的代码时，就直接使用预编译头文件，速度的提升明显。
+这些预先编译好的代码可以是任何的 C/C++ 代码，甚至是 inline 函数，但前提是这些代码必须是稳定的，即在开发过程中不会被经常改变的。如果这些代码被修改，则需要重新编译生成新的预编译头文件。</li>
+</ul>
+<h3 id="拆分-lib"><strong>拆分 lib</strong></h3>
+<p>正如 Catch2 里一旦定义了 CATCH_CONFIG_MAIN 编译速度会大大减慢一样，把什么东西都放一起最终证明对编译速度还是相当不利的。所以相关的实践如下：</p>
+<ul>
+<li>去除多余的依赖关系
+拆分出公共模块，剔除不必要的依赖关系。每个 lib 的大小和规模，需要根据实际情况权衡。</li>
+<li>避免 cpp ⽂件被多个项⽬包含和重复编译
+同上，当拆分出独立的 lib 以后，就不存在同一个 cpp 被重复包含和编译的情况了。因为这会消耗过多的编译资源。</li>
+<li>各模块单独进⾏版本管理、构建和发布
+拆分出的 lib 单独版本管理的好处是，不用每次编译所有模块，模块就可以通过动态链接或者静态链接已经并发布的 lib 文件，各 lib 之间仅依赖发布版本。
+（C++ 20 的 Module，可以很好解决 lib 现有的问题，更好地管理好模块之间的依赖关系）</li>
+</ul>
+<h3 id="编译任务编排"><strong>编译任务编排</strong></h3>
+<ul>
+<li>
+<p>对于 C/C++ 项目来说，编译阶段可以同时启动多个进程，并行处理；但链接阶段只能在所有目标文件生成结束后，进行串行处理。所以识别并发任务并进行编排就显得尤为重要。</p>
+</li>
+<li>
+<p>提高编译并发度，尽早开始瓶颈项⽬的构建，以便减少过多依赖等待和减轻瓶颈效应。甚⾄可考虑将⼤项⽬拆解，以并发构建这些拆解出的⼩项⽬</p>
+</li>
+<li>
+<p>避免 IO 密集型任务过度并发，使 CPU ⽆法跑满</p>
+</li>
+<li>
+<p>尽量让 IO 密集型任务与 CPU 密集型任务重叠执⾏</p>
+</li>
+<li>
+<p>提⾼预处理过程过程的并发度</p>
+</li>
+</ul>
+<h3 id="优化模板实例化"><strong>优化模板实例化</strong></h3>
+<p>谨慎使用复杂 template 库，因为模板的实例化过程本身也会很耗时，虽然标准库在这方面也一直在努力。
+比如头文件中有 std::vector，则该模板在每个 cpp 文件中使用时都会做一次实例化，N 个源文件中的就会实例化 N 次。</p>
+<h3 id="编码角度---针对接口编程"><strong>编码角度 - 针对接口编程</strong></h3>
+<p>使用 <strong>Pimpl</strong> 模式实现声明与实现分离。其中，接口定义要相对稳定，只 include 接口头文件。</p>
+<blockquote>
+<p>Pimpl（Pointer to Implementor），顾名思义就是将真正的实现细节的 Implementor 从类定义的头文件中分离出去，公有类通过一个私有指针指向隐藏的实现类，是促进接口和实现分离的重要机制。</p>
+</blockquote>
+<p>通常的 Pimpl 的手法是在 API 的头文件中提供接口类的定义以及实现类的前置声明，实现类的本身定义和成员函数的实现都隐藏在 CPP 文件中去，同时为了避免实现类的符号污染外部名字空间，实现类大多作为接口类的内部嵌套类的形式。</p>
+<h3 id="清理代码"><strong>清理代码</strong></h3>
+<ul>
+<li>清理无用代码
+项目规模随着业务的增长，代码量也会膨胀，必然也会存在一些无用的代码和模块。</li>
+<li>清理重复代码
+重复、冗余的代码，考虑精简，重构后抽离出公共的部分（类或函数）。</li>
+</ul>
+<h3 id="优化编译链接选项"><strong>优化编译、链接选项</strong></h3>
+<ul>
+<li>减少输出</li>
+<li>增量编译</li>
+<li>构建结果复用</li>
+</ul>
+<h3 id="升级工具链"><strong>升级工具链</strong></h3>
+<ul>
+<li>使用编译加速工具，比如：ccache、UB、clang、IB</li>
+<li>Visual studio 和 make 都支持并行编译</li>
+<li>使用分布式编译工具，如 IncrediBuild</li>
+</ul>
+<h3 id="增加硬件投入升级硬件非必选"><strong>增加硬件投入/升级硬件（非必选）</strong></h3>
+<p>更⾼主频，更多的核，更⼤的内存，更快的磁盘（SSD）和⽹络更⾼性能的构建机集群</p>
+<p><strong>Tips</strong>：在项目的某个阶段和一定规模的时候，稍微增加⼀点硬件成本，是可以换来整体研发效率上的提升！但是，这并不是长远之计。毕竟 “Free launch is Over”。在达到一定量级以后，更应该关注的代码本身，从代码质量和效率上发力。</p>
+<h3 id="使用-c20-module-特性非必选"><strong>使用 C++20 Module 特性（非必选）</strong></h3>
+<p>不是所有公司的项目都在用 C++20，在笔者发文的时候，市面上还没有很好的编译器支持 Module 特性。并且鉴于 C/C++ 项目大多都有些年头，故非比选。</p>
+<h3 id="其他"><strong>其他</strong></h3>
+<ul>
+<li>关闭防⽕墙之类后台服务（极⼤影响 IO 性能）</li>
+<li>找出瓶颈项⽬，针对性优化</li>
+<li>拉取代码、打包上传等环节 （⾮编译环节）</li>
+</ul>
+<p>[1] 使用 Git shallow clone 浅克隆（&ndash;depth）<!-- raw HTML omitted -->
+[2] 检查冗余文件、代码等数据的上传和下载<!-- raw HTML omitted -->
+[3] 检查是否执⾏了多余的命令<!-- raw HTML omitted --></p>
+<h2 id="7小结">7.小结</h2>
+<p>代码的维护是一个持久的过程，而大型C++工程项目都会面临编译耗时较长的问题。不管是开发、测试，亦或是持续集成阶段，编译行为无处不在。降低编译时间对提高研发效率来说意义非凡。
+项目优化一定要先明确目标，找准方向了再针对问题瓶颈 “对症下药”，而不要 “一味盲干”。要知道选择大于努力
+希望本文对大家能有所帮助，亦或有所启发。</p>
+<h1 id="参考">参考</h1>
+<ul>
+<li><a href="https://stackoverflow.com/questions/37260097/stdarray-with-aggregate-initialization-on-g-generates-huge-code">https://stackoverflow.com/questions/37260097/stdarray-with-aggregate-initialization-on-g-generates-huge-code</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/translation_phases">https://en.cppreference.com/w/cpp/language/translation_phases</a></li>
+<li><a href="https://aras-p.info/blog/2019/01/12/Investigating-compile-times-and-Clang-ftime-report">https://aras-p.info/blog/2019/01/12/Investigating-compile-times-and-Clang-ftime-report</a></li>
+<li><a href="https://aras-p.info/blog/2019/01/16/time-trace-timeline-flame-chart-profiler-for-Clang">https://aras-p.info/blog/2019/01/16/time-trace-timeline-flame-chart-profiler-for-Clang</a></li>
+<li><a href="https://www.snsystems.com/technology/tech-blog/clang-time-trace-feature">https://www.snsystems.com/technology/tech-blog/clang-time-trace-feature</a></li>
+<li><a href="https://github.com/alex-che/gcc-phases">https://github.com/alex-che/gcc-phases</a></li>
+<li><a href="https://github.com/mikael-s-persson/templight">https://github.com/mikael-s-persson/templight</a></li>
+<li><a href="https://github.com/royjacobson/externis">https://github.com/royjacobson/externis</a></li>
+<li><a href="https://github.com/aras-p/ClangBuildAnalyzer">https://github.com/aras-p/ClangBuildAnalyzer</a></li>
+<li><a href="https://gcc.gnu.org/onlinedocs/gcc/Precompiled-Headers.html">https://gcc.gnu.org/onlinedocs/gcc/Precompiled-Headers.html</a></li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/c&#43;&#43;/" rel="tag">C&#43;&#43;</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Corsair-cxs avatar" src="/img/gedu.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 Corsair-cxs</span>
+	</div>
+	<div class="authorbox__description">
+		简介
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">C&#43;&#43; return等关键字编写规则</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

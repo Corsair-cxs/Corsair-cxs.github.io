@@ -2,76 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://corsair-cxs.github.io/about/about/</loc>
+    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://corsair-cxs.github.io/docs/getting-started/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://corsair-cxs.github.io/docs/customization/</loc>
+    <loc>https://corsair-cxs.github.io/main/getting-started/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://corsair-cxs.github.io/docs/faq/</loc>
-    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/tags/c&#43;&#43;/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/4.%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/3.c&#43;&#43;%E8%87%AA%E5%8A%A8%E6%8E%A8%E6%96%AD%E5%92%8C%E5%BE%AA%E7%8E%AF/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/categories/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/categories/development/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/tags/linux/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/tags/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/post/dev/gedu/linuxcoredev/02_startup/</loc>
+    <lastmod>2023-02-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://corsair-cxs.github.io/about/</loc>
-    <lastmod>2022-01-25T14:00:00+00:00</lastmod>
+    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://corsair-cxs.github.io/docs/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://corsair-cxs.github.io/tags/installation/</loc>
+    <loc>https://corsair-cxs.github.io/tags/mainpage/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://corsair-cxs.github.io/tags/</loc>
+    <loc>https://corsair-cxs.github.io/main/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://corsair-cxs.github.io/</loc>
-    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
+    <loc>https://corsair-cxs.github.io/docs/customization/</loc>
   </url><url>
-    <loc>https://corsair-cxs.github.io/post/basic-elements/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>https://corsair-cxs.github.io/docs/faq/</loc>
   </url><url>
-    <loc>https://corsair-cxs.github.io/categories/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/0.startup/vscode_setup/</loc>
   </url><url>
-    <loc>https://corsair-cxs.github.io/tags/css/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/categories/development/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/html/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/misc/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/post/</loc>
-    <lastmod>2018-04-16T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/post/hugo-template-primer/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/development/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/go/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/categories/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/hugo/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/post/getting-started-with-hugo/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/templates/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/tags/themes/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/2.type_inference/reference/</loc>
   </url>
 </urlset>

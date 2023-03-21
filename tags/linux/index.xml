@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 陈显森的GitBlog</title>
+    <link>https://corsair-cxs.github.io/tags/linux/</link>
+    <description>Recent content in Linux on 陈显森的GitBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 16 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>创立门庭：编写和透视主程序</title>
+      <link>https://corsair-cxs.github.io/post/dev/gedu/linuxcoredev/02_startup/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/gedu/linuxcoredev/02_startup/</guid>
+      <description>&lt;p&gt;本讲的主要内容是“创立门厅”，顾名思义是创立一个空间，并且程序在空间内活动&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

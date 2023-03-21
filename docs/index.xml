@@ -8,7 +8,7 @@
     <language>zh-cn</language>
     <lastBuildDate>Mon, 24 Jan 2022 14:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Main Page</title>
+      <title>主页</title>
       <link>https://corsair-cxs.github.io/docs/getting-started/</link>
       <pubDate>Mon, 24 Jan 2022 14:00:00 +0000</pubDate>
       
@@ -19,24 +19,24 @@ with the &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static site g
     </item>
     
     <item>
-      <title>Blogs</title>
+      <title></title>
       <link>https://corsair-cxs.github.io/docs/customization/</link>
-      <pubDate>Mon, 24 Jan 2022 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://corsair-cxs.github.io/docs/customization/</guid>
-      <description>&lt;p&gt;Blogs page describes common Mainroad configuration parameters which can be specified via configuration file or
-via Front Matter section. That includes logo section tuning, adding a sidebar with widgets, adjusting highlight color,
-and more.&lt;/p&gt;</description>
+      <description>This section will mainly cover Blogs settings that are unique to this theme. If something is not covered here, there&amp;rsquo;s a good chance it is covered somewhere in Hugo docs.
+Logo Mainroad allows you to set a custom logo in the site header. You may use text, or image, or both. Use the following options in your site config:
+[Params.logo] image = &amp;#34;img/placeholder.png&amp;#34; title = &amp;#34;Mainroad&amp;#34; subtitle = &amp;#34;Just another site&amp;#34; Note: logo image will display at a maximum width of 128 pixels and a maximum height of 128 pixels when you use text and image simultaneously.</description>
     </item>
     
     <item>
-      <title>Frequently asked questions (FAQ)</title>
+      <title></title>
       <link>https://corsair-cxs.github.io/docs/faq/</link>
-      <pubDate>Mon, 24 Jan 2022 14:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://corsair-cxs.github.io/docs/faq/</guid>
-      <description>&lt;p&gt;Browse this FAQ page to find answers to frequently asked questions that have not been covered elsewhere
-in the documentation.&lt;/p&gt;</description>
+      <description>The answers have been categorized into two groups:
+Answers to general questions without any lines of code. Answers to technical questions with code snippets, step-by-step instructions, etc. General questions Do I need to have prior experience before proceeding with the Mainroad theme? Yes. You&amp;rsquo;ll need to be familiar with Hugo before proceeding. Our docs section is intended for intermediate to advanced users and developers. Our documentation may still be helpful to users with minimal experience, but are not comprehensive.</description>
     </item>
     
   </channel>

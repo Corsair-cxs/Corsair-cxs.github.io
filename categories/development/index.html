@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="zh-cn">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +38,7 @@
 	<div class="logo logo--mixed">
 		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
 			<div class="logo__item logo__imagebox">
-					<img class="logo__img" src="/img/watch.jfif">
+					<img class="logo__img" src="/img/gedu.jpg">
 				</div><div class="logo__item logo__text">
 					<div class="logo__title">陈显森的博客</div>
 					<div class="logo__tagline">正心诚意，格物致知</div>
@@ -48,41 +48,41 @@
 		
 <nav class="menu">
 	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">Menu</span>
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
 	</button>
 	<ul class="menu__list">
 		<li class="menu__item">
-			<a class="menu__link" href="/docs/getting-started/">
+			<a class="menu__link" href="/main/getting-started/">
 				
-				<span class="menu__text">Main Page</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/docs/customization/">
-				
-				<span class="menu__text">Blogs</span>
+				<span class="menu__text">主页</span>
 				
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/docs/faq/">
+			<a class="menu__link" href="/post/">
 				
-				<span class="menu__text">FAQ</span>
-				
-			</a>
-		</li>
-		<li class="menu__item">
-			<a class="menu__link" href="/post/basic-elements/">
-				
-				<span class="menu__text">MISC</span>
+				<span class="menu__text">博客文章</span>
 				
 			</a>
 		</li>
 		<li class="menu__item">
-			<a class="menu__link" href="/about/">
+			<a class="menu__link" href="/categories/">
 				
-				<span class="menu__text">About</span>
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
 				
 			</a>
 		</li>
@@ -101,130 +101,296 @@
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/post/basic-elements/" rel="bookmark">
-			Basic HTML Elements
+			<a href="/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/" rel="bookmark">
+			【转】谈谈编译期优化
 			</a>
 		</h2>
+		<p class="list__lead post__lead">【转】谈谈编译期优化</p>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-04-16T00:00:00Z">2018-04-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
 	</span>
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		<p>The main purpose of this article is to make sure that all basic HTML Elements are decorated with CSS so as to not miss any possible elements when creating new themes for Hugo.</p>
+		谈谈编译期优化 代码的维护是一个长期且持久的过程，而大型C++工程项目都会面临编译耗时较长的问题。不管是开发、测试，亦或是持续集成阶段，编译行
 	</div>
-</article><article class="list__item post">
-	
-	<figure class="list__thumbnail thumbnail">
-		<a class="thumbnail__link" href="/post/hugo-template-primer/">
-		<img class="thumbnail__image" src="/img/placeholder.png" alt="(Hu)go Template Primer">
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/hugo-template-primer/" rel="bookmark">
-			(Hu)go Template Primer
-			</a>
-		</h2>
-		<div class="list__meta meta"><div class="meta__item-author meta__item">
-	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
-</div>
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2014-04-02T00:00:00Z">2014-04-02</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>, <a class="meta__link" href="/categories/golang/" rel="category">golang</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		<p>Hugo uses the excellent <a href="https://golang.org/">Go</a> <a href="https://golang.org/pkg/html/template/">html/template</a> library for
-its template engine. It is an extremely lightweight engine that provides a very
-small amount of logic. In our experience that it is just the right amount of
-logic to be able to create a good static website. If you have used other
-template systems from different languages or frameworks you will find a lot of
-similarities in Go templates.</p>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/">阅读全文…</a>
 	</div>
 </article><article class="list__item post">
 	
 	<header class="list__header">
 		<h2 class="list__title post__title">
-			<a href="/post/getting-started-with-hugo/" rel="bookmark">
-			Main Page with Hugo
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/" rel="bookmark">
+			C&#43;&#43; return等关键字编写规则
 			</a>
 		</h2>
+		<p class="list__lead post__lead">C&#43;&#43; return等关键字编写规则</p>
 		<div class="list__meta meta"><div class="meta__item-author meta__item">
 	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
 </div>
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2014-04-02T00:00:00Z">2014-04-02</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>, <a class="meta__link" href="/categories/golang/" rel="category">golang</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
 	</span>
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Step 1. Install Hugo Go to Hugo releases and download the appropriate version for your OS and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at Install Hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
-Clone the Hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313 Corresponding pseudo commands:
+		在c++中有3中改变语义顺序的关键字 return、break、continue.当它们和if组合时,有2种写法. 法1 法2 实现方式 语义转换用e
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="bookmark">
+			C&#43;&#43; static的使用
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43; static的使用</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		1.说明 static 为静态.说明如下const 情况 说明 使用场景 修饰变量 本进程中只有一份. 生命周期开始于main函数前,结束于main函数后 单例, 全局统
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/" rel="bookmark">
+			C&#43;&#43; std function和bind的用法
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43; std function和bind的用法</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		c++内部存在2种函数指针,普通函数指针(和c语言一样)与成员函数指针. 两者的区别在于成员函数指针多了一个对象指针. 普通函数调用本质是通过普
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/" rel="bookmark">
+			C&#43;&#43; vector与dequeue的特性
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43; vector与dequeue的特性</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		1.特性说明 两者在功能上存在相似,在使用上也存在争议.争议点在于vector内存占用过大.接下来我将会比较二者的特点,剖析到底要怎么用.下表
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/" rel="bookmark">
+			C&#43;&#43; 降低复制时间
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43; 降低复制时间</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		一,说明 由于开发过程中需要对大量数据进行处理,因此某些类中含有大数据结构(vector,deque, map等),很多时候需要对结果或者中间过
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/" rel="bookmark">
+			C&#43;&#43; 局部变量使用规则
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43; 局部变量使用规则</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		1.说明 局部变量为函数中常用的一直数据方式,它的初始化可以自己调用也可以由函数返回来完成. 本着以尽可能少的调用复制构造或者赋值函数的前提下,
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/" rel="bookmark">
+			C&#43;&#43;赋值和复制
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43;赋值和复制</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		一.说明 c++11 值的类型分为 左值, 纯右值,将亡值(return 返回). 将亡值属于右值. c++11 中引入了右值引用和移动语义,可以避免无谓的复制,提高了程序
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/" rel="bookmark">
+			C&#43;&#43;构造析构
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43;构造析构</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		1.单个类说明 类的生命周期起始于构造函数,终止于析构函数.可以在栈(直接使用)上创建也可以在堆(new 产生)上创建,也可以限制允许在一种情况
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/">阅读全文…</a>
+	</div>
+</article><article class="list__item post">
+	
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/dev/c&#43;&#43;/1.modern_cpp/4.%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E/" rel="bookmark">
+			C&#43;&#43;函数的参数与返回
+			</a>
+		</h2>
+		<p class="list__lead post__lead">C&#43;&#43;函数的参数与返回</p>
+		<div class="list__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		函数的参数与返回 一、函数的参数 1.3种类型的c++函数参数 基本数据类型(内建类型)、指针或引用、类(结构体). 具体说明如下表： 类型 大小 例子 基
+	</div>
+	<div class="list__footer clearfix">
+		<a class="list__footer-readmore btn" href="/post/dev/c&#43;&#43;/1.modern_cpp/4.%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E/">阅读全文…</a>
 	</div>
 </article>
 </main>
 
+<div class="pagination">
+	<span class="pagination__item pagination__item--current">1/2</span>
+	<a class="pagination__item pagination__item--next btn" href="/categories/development/page/2/">»</a>
+</div>
 
 			</div>
 			
-<aside class="sidebar sidebar--left"><div class="widget-search widget">
-	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://bing.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="https://corsair-cxs.github.io/">
 	</form>
 </div>
 <div class="widget-recent widget">
-	<h4 class="widget__title">Recent Posts</h4>
+	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
-			<li class="widget__item"><a class="widget__link" href="/docs/getting-started/">Main Page</a></li>
-			<li class="widget__item"><a class="widget__link" href="/docs/customization/">Blogs</a></li>
-			<li class="widget__item"><a class="widget__link" href="/docs/faq/">Frequently asked questions (FAQ)</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/basic-elements/">Basic HTML Elements</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/hugo-template-primer/">(Hu)go Template Primer</a></li>
+			<li class="widget__item"><a class="widget__link" href="/docs/getting-started/">主页</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/">【转】谈谈编译期优化</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/">C&#43;&#43; return等关键字编写规则</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/">C&#43;&#43; static的使用</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/">C&#43;&#43; std function和bind的用法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/">C&#43;&#43; vector与dequeue的特性</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/">C&#43;&#43; 降低复制时间</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/">C&#43;&#43; 局部变量使用规则</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/">C&#43;&#43;赋值和复制</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/">C&#43;&#43;构造析构</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-categories widget">
-	<h4 class="widget__title">Categories</h4>
+	<h4 class="widget__title">分类</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
-				<a class="widget__link" href="/categories/development/">Development</a></li>
-			<li class="widget__item">
-				<a class="widget__link" href="/categories/golang/">golang</a></li>
+				<a class="widget__link" href="/categories/development/">Development</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">12</span>
+				</li>
 		</ul>
 	</div>
 </div>
 <div class="widget-taglist widget">
-	<h4 class="widget__title">Tags</h4>
+	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
-		<a class="widget-taglist__link widget__link btn" href="/tags/css/" title="CSS">CSS</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/development/" title="development">development</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/go/" title="go">go</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="golang">golang</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/html/" title="HTML">HTML</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/hugo/" title="hugo">hugo</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/installation/" title="Installation">Installation</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/misc/" title="MISC">MISC</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/templates/" title="templates">templates</a>
-		<a class="widget-taglist__link widget__link btn" href="/tags/themes/" title="themes">themes</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (11)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mainpage/" title="MainPage">MainPage (3)</a>
 	</div>
 </div>
 <div class="widget-social widget">
-	<h4 class="widget-social__title widget__title">Social</h4>
+	<h4 class="widget-social__title widget__title">社交</h4>
 	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:1494089474@qq.com">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>1494089474@qq.com</span>
+			</a>
+		</div>
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/Corsair-cxs" target="_blank">
 				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
@@ -232,24 +398,18 @@ Clone the Hugo repository Go into the repo Run hugo in server mode and build the
 			</a>
 		</div>
 		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="Email" href="mailto:1494089474@qq.com">
-				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
-				<span>1494089474@qq.com</span>
+			<a class="widget-social__link widget__link btn" title="Gitee" rel="noopener noreferrer" href="https://gitee.com/cxs5534" target="_blank">
+				<svg version="1.1" viewBox="0 0 24 24" width="0.200017in" height="0.200017in" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAABJ0AAASdAHeZh94AAACV0lEQVQ4T62UzWsTQRjGn012sx/5ampACR6sF+vm4Em8ebQYeghFvOgfUBX1YhHpxaNW8eJJ1INFRfRQoggqCuJBLAjVq9ZTsWljaEhCOpv9yMh2J9ndZDdWyMMedt73nd/OPO/McqqqYhSKjAJiM/ghIArQ8DQHcJ5sAIiCtojWItuxtsHRYJRNyYwlZbnH6gdZlFbXy3PF4uz5C+m8CkFAIEuMPbx4+frrVylZDgBZlDbK5dW378aOHXXSQ5SfPGSWlnoF7oooUNna+nzv/m4odpt4gTF25IJ0yzyeGZ88fYplgDe371i6zkUCOqtI0t0Xz+PdfflAba1dPHOWhYHCgYNfdE0S+k1kaUCRZJF3s+6b2ens37uPVW1UPtZrE7lck5Bmo8GCfvFR3gvyLpuKvQZxEZHnm4RcLUzXNiu1n7/6n83KfGG6SQirH2w/C+/INI2JvIpoBJk0C3l05LBqvFwCmE0BRjoJR7FoqEeGaXSrbIXW2XbKyoPFR9TQCdFgXxdqtfWZ+WvOzAjnvSFhIGq7JfL81z+VTzdvODMpsLG2Rs/NYjwDYF0jEc7dUMiKZLFVrf4G7X2UAkaLLBRnHAqAleVlQXDPZAgonTLqTWgaeuunFIqMRJwNTevJh/dKLseGwzxKJZBKsKoBXToxhWzWa5Ova5LkHvmBuW7gytTJZ6s/4qLorXG3FpeVW08fz4Fqmt2jPnFAvdNZ+f5tsVQiezLZZNLXM8D3z26bZots9zO6Yw6cIAiyKEb9jXeyPrNFnheTKSfxv/rHyd49bjQgAH8B3UnJFSBzxK8AAAAASUVORK5CYII="/></svg>
+				<span> &nbsp&nbsp Gitee</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="CSDN" rel="noopener noreferrer" href="https://blog.csdn.net/cxs5534" target="_blank">
+				<svg version="1.1" viewBox="0 0 24 24" width="0.200017in" height="0.200017in" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAABJ0AAASdAHeZh94AAAB7ElEQVQ4T+2UsarqMBzGU1t6tLYUh4Lgoo4u3QSlj9FJnAQ3cfAFnJzE0cFJF9/APoEuzg4udlBqFRS0Dhqbprlw4qna673H4UyX+039ku//S5r8CZPL5cBPKPITkH8cxP3pjAghrutCCBFCnucRQmiS4zie52VZDhW+BkEI9/u9pmm6rheLxXQ6/fHxQSvX6/V0Oq3X6yFWGEQI2e12mqYNh0NBEELLAgBSqVShUHBdNzT1BCKEbDabTqdTqVQec+Px+Hw+MwyDMVZV1TRNjgvv4MmfTqdGo/FIKZVKo9FIEASGYSgaY8xxXCKReFwJAHDvbIwxQsg0zSChqurhcBBFMaD8RffOhhCWy+UgOplMLMuSJOkdyhMIY5zNZm8YABaLRTQavZk3dN8Ry7Kr1Sooyefzx+MxaJ9vxSqKQkMsy85ms1qtRq2iKBhjwzAIIZ7nIYQun8IY8zxPM496ekYcx6lWq81mM0hcLhfDMJbLpeM4mUwmmUyaptlut0VRvCW+9HT9six3u13btnu9Hg3EYjFd1+k3Vb/f933/y911/zU6Fo/H5/N5q9WybZtaSZLolOd52+12MBhYlvV7Q75+IX3fhxBer1eEEMaYghiGYVlWkqSXtxnudFoTiUSET1H7jv4/td+cEgDgFwCe0OQBzCdoAAAAAElFTkSuQmCC"/></svg>
+				<span> &nbsp&nbsp CSDN </span>
 			</a>
 		</div>
 
-		
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="GitBlog"  rel="noopener noreferrer" href="https://corsair-cxs.github.io/" target="_blank">
-				<span>GitBlog</span>
-			</a>
-		</div>
-		
-		<div class="widget-social__item widget__item">
-			<a class="widget-social__link widget__link btn" title="CSDN"  rel="noopener noreferrer" href="https://blog.csdn.net/cxs5534" target="_blank">
-				<span>CSDN</span>
-			</a>
-		</div>
 		
 	</div>
 </div>
@@ -259,8 +419,8 @@ Clone the Hugo repository Go into the repo Run hugo in server mode and build the
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2023 Corsair-cxs.
-			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
 		</div>
 	</div>
 </footer>

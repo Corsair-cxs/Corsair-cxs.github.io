@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>C&#43;&#43;函数的参数与返回 - 陈显森的GitBlog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="C&#43;&#43;函数的参数与返回浅析">
+		<meta property="og:title" content="C&#43;&#43;函数的参数与返回" />
+<meta property="og:description" content="C&#43;&#43;函数的参数与返回浅析" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/4.%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-16T00:00:00+00:00" />
+
+		<meta itemprop="name" content="C&#43;&#43;函数的参数与返回">
+<meta itemprop="description" content="C&#43;&#43;函数的参数与返回浅析"><meta itemprop="datePublished" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2440">
+<meta itemprop="keywords" content="C&#43;&#43;," />
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43;函数的参数与返回"/>
+<meta name="twitter:description" content="C&#43;&#43;函数的参数与返回浅析"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/gedu.jpg">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">陈显森的博客</div>
+					<div class="logo__tagline">正心诚意，格物致知</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/main/getting-started/">
+				
+				<span class="menu__text">主页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/post/">
+				
+				<span class="menu__text">博客文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/categories/">
+				
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">C&#43;&#43;函数的参数与返回</h1>
+			<p class="post__lead">C&#43;&#43;函数的参数与返回</p>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#13种类型的c函数参数">1.3种类型的c++函数参数</a></li>
+        <li><a href="#2const-限定补充">2.const 限定补充:</a></li>
+        <li><a href="#3加引用和加非const函数大量优化速度">3.加引用和加非const函数(大量优化速度！！)</a></li>
+        <li><a href="#4-函数参数的输入输出顺序">4. 函数参数的输入输出顺序</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="函数的参数与返回">函数的参数与返回</h1>
+<h1 id="一函数的参数">一、函数的参数</h1>
+<h3 id="13种类型的c函数参数">1.3种类型的c++函数参数</h3>
+<p>基本数据类型(内建类型)、指针或引用、类(结构体).
+ 具体说明如下表：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>大小</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本数据类型</td>
+<td>固定长度.<!-- raw HTML omitted -->不超过8字节(少用的long double  可能除外)</td>
+<td>char、 int、 unsigned int、long、float、double, enum 等</td>
+</tr>
+<tr>
+<td>指针或引用</td>
+<td>固定长度.<!-- raw HTML omitted -->一般为cpu的字长(32位机4字节 64位机8字节)<!-- raw HTML omitted -->特殊：有的单片机24位寻址(基本少遇到)</td>
+<td>char *,int * , char &amp;, int &amp;</td>
+</tr>
+<tr>
+<td>类(结构体)</td>
+<td>由类成员决定,不同的类不一样.<!-- raw HTML omitted -->最小一般1字节 (空结构体大多数编译器,强制1字节)</td>
+<td>class A;  struct B；</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>当函数传入参数时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本数据类型</td>
+<td>直接用本类型,不要用const修饰  建议不要修饰,函数内部修改不会传出)<!-- raw HTML omitted -->建议:  void func(int a)<!-- raw HTML omitted -->不建议:  void func(const int a)</td>
+</tr>
+<tr>
+<td>指针或引用</td>
+<td>能用引用传入就不要用指针.<!-- raw HTML omitted -->能用const 限定一定要添加.<!-- raw HTML omitted -->建议 : void func(const int &amp;a) 或 void func(int &amp;a)<!-- raw HTML omitted -->万不得已 ： void func(const int *pa)  或  void func(int *pa) (最差!!)  <!-- raw HTML omitted -->注意:非本类指针输入需要检查是否为NULL</td>
+</tr>
+<tr>
+<td>类(结构体)</td>
+<td>用指针或者引用作为参数时,不建议直接用类作为参数(特例:类成员个数少)<!-- raw HTML omitted -->class A{int m, int d;}<!-- raw HTML omitted -->建议: void func(const A &amp;a) 或 void func(A &amp;a)<!-- raw HTML omitted -->不建议：void func(A a)  <!-- raw HTML omitted -->万不得已 ： void func(const A *pa)  或  void func(A *pa) (最差!!)  <!-- raw HTML omitted -->注意:非本类指针参数需要检查是否为NULL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2const-限定补充">2.const 限定补充:</h3>
+<p>1.类(结构体)类型参数时表示函数内部不修改该变量的数据.
+能达到保护参数数据不被修改的作用,从而减少的类或者数据的复制,以达到降低cpu与内存的效果.
+示例如下:</p>
+<ul>
+<li>有效的const 限定： <code>const A &amp;a</code>, <code>const A *pa</code>, <code>const A *const pa</code>  (第一种最推荐！)</li>
+<li>也可以但不建议: <code>A const  &amp;a</code>, <code>A const  *pa</code></li>
+</ul>
+<p>2.类的函数为const时该函数称为const函数.表示该函数不修改类的成员变量(可用读),有以下优点:</p>
+<ul>
+<li>如果参数类型为const &amp;或者 const *类型,只能调用const 的成员函数.(因此能被const限定方式调用)</li>
+<li>可以和非const 函数重载,达到既能调用非const 限定的任何方法,也能调用const限定的方法.</li>
+</ul>
+<p>代码例程如下:</p>
+<ol>
+<li>
+<p>取消 基本数据类型的cosnt 限定
+修改前: <code>void calculateAngleAndRhoSize(const int map_size_x, const int map_size_y);</code>
+修改后: <code>void calculateAngleAndRhoSize(int map_size_x, int map_size_y)</code></p>
+</li>
+<li>
+<p>指针改引用(引用一定不为NULL,指针需要检查,否则可能引发段错误)
+修改前： <code>virtual void createObstacle( CDilemmaData* data);</code>
+修改后： <code>virtual void createObstacle( CDilemmaData &amp;data);</code></p>
+</li>
+</ol>
+<h3 id="3加引用和加非const函数大量优化速度">3.加引用和加非const函数(大量优化速度！！)</h3>
+<p>修改前如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> CCoveragePointGeneration<span style="color:#f92672">::</span>getCoveragePoint(
+</span></span><span style="display:flex;"><span>            algo<span style="color:#f92672">::</span>CLocalSection<span style="color:#f92672">&amp;</span> local_section, std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&amp;</span> up_deque_indent,
+</span></span><span style="display:flex;"><span>            std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&amp;</span> down_deque_indent, 
+</span></span><span style="display:flex;"><span>            std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&gt;&amp;</span> coverage_deque_up_split,
+</span></span><span style="display:flex;"><span>            std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&gt;&amp;</span> coverage_deque_down_split)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    .... <span style="color:#75715e">//存在多次对大数据进行复制
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    CCoverageData cover_data <span style="color:#f92672">=</span> local_section.getCoverageData();  <span style="color:#75715e">//复制第一次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    algo<span style="color:#f92672">::</span>CChainMap chain_map <span style="color:#f92672">=</span> cover_data.getMap(); <span style="color:#75715e">//复制第二次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    sparseCoveragePoint(cover_data, chain_map, coverage_deque_up_split, coverage_deque_down_split);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cover_data.setMap(chain_map); <span style="color:#75715e">//复制第三次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    local_section.setCoverageData(cover_data); <span style="color:#75715e">//复制第四次
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> CCoveragePointGeneration<span style="color:#f92672">::</span>sparseCoveragePoint(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> CCoverageData<span style="color:#f92672">&amp;</span> cover_data, algo<span style="color:#f92672">::</span>CChainMap<span style="color:#f92672">&amp;</span> map,
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&gt;&amp;</span> coverage_up_deque,
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&gt;&amp;</span> coverage_down_deque) <span style="color:#66d9ef">const</span> <span style="color:#75715e">//const 非常棒的限定,外部可以安心调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>  ....
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>修改后如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CCoverageData</span> <span style="color:#75715e">//本类所有成员超过480K大小(复制成本高昂)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    ....
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> algo<span style="color:#f92672">::</span>CChainMap<span style="color:#f92672">&amp;</span> getMap() <span style="color:#66d9ef">const</span> <span style="color:#75715e">//如果为const 方法一定要加该限定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_map;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    algo<span style="color:#f92672">::</span>CChainMap<span style="color:#f92672">&amp;</span> getMap() <span style="color:#75715e">//添加非const方法和const方法重载
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_map;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CLocalSection</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ....
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> CCoverageData<span style="color:#f92672">&amp;</span> getCoverageData() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_coverage_data;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    CCoverageData<span style="color:#f92672">&amp;</span> getCoverageData() <span style="color:#75715e">//添加非const方法和const方法重载
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_coverage_data;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//建议getCoverageData()  改名为 coverageData()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//习惯使用: 获取参数直接名字(不用get修饰),设置时使用 set修饰
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*  效率低下,且功能单一通过 普通getCoverageData()和 const方法配合能灵活且高效!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    void setMap( const algo::CChainMap&amp; map)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        m_map = map;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    */</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> CCoveragePointGeneration<span style="color:#f92672">::</span>getMoppingCoveragePoint(
+</span></span><span style="display:flex;"><span>    algo<span style="color:#f92672">::</span>CLocalSection<span style="color:#f92672">&amp;</span> local_section, std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&amp;</span> up_deque_indent,
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&amp;</span> down_deque_indent, std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&gt;&amp;</span> coverage_deque_up_split,
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&gt;&gt;&amp;</span> coverage_deque_down_split) <span style="color:#66d9ef">const</span> 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    reverseCoverageDirection(local_section, up_deque_indent, down_deque_indent, coverage_deque_up_split,
+</span></span><span style="display:flex;"><span>                             coverage_deque_down_split);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//如果不想函数修改成员也可以 auto const &amp;cover_data = local_section.getCoverageData(); 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">//atuo 自动推断. 简洁 等同于 CCoverageData &amp;cover_data = local_section.getCoverageData()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>cover_data <span style="color:#f92672">=</span> local_section.getCoverageData(); <span style="color:#75715e">//没有复制任何数据. 调用 getCoverageData() 非const 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sparseMoppingCoveragePoint(cover_data, cover_data.getMap(), coverage_deque_up_split, coverage_deque_down_split);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//直接修改(效率大幅度提高) 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="4-函数参数的输入输出顺序">4. 函数参数的输入输出顺序</h3>
+<p>在代码圈中留下2中习惯, 先全部为输出,之后全部为输入.  或者先全部为输入,之后全部为输出.很少混合出现！！！
+我个人喜欢第二种, 将输出放前,它具有以下优点：</p>
+<ul>
+<li>优点一： 让改变的值更醒目</li>
+<li>优点二： 输出值一般少用输入值, 更容易看到分界线.</li>
+</ul>
+<p>如果参数没加const 限定,默认都是要被修改的.如果全部类没写限定,会呈现难以确定那个参数是输入值那个参数是输出值的现象.因此只能通过复制类的方法输入.最终引起大量消耗空间和CPU,并造成代码难以维护且低效的恶果.</p>
+<h1 id="二返回值">二、返回值</h1>
+<p>对返回值可以不限定类型,如果返回为类,编译器自动会优化,达到类似输入参数的目的,c++11还可以自动调用 右值复制.(可以搜索 返回值优化 RVO)
+如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span> std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span> CLineInfor <span style="color:#f92672">&gt;</span> CMeasurePolygon<span style="color:#f92672">::</span>getPolygonLine(<span style="color:#66d9ef">const</span> std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span> CLineInfor <span style="color:#f92672">&gt;&amp;</span> LineListInfor,
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> CLineSegment<span style="color:#f92672">&amp;</span> currentLine)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>      std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span> CLineSegment <span style="color:#f92672">&gt;</span> otherLineList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> otherLineList; <span style="color:#75715e">//非常高效,放心使用  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>如果对于类的成员,外部需要获取建议用 const 函数限定,还可以添加非const函数.
+大多数情况下,外部只需要读数据进行读取,如果用直接返回类就过于低效.</p>
+<p>修改前如下:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CChainExtraction</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>     ...
+</span></span><span style="display:flex;"><span>     CChain getLiveChain() <span style="color:#75715e">//低效(外部可能只是读取)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_current_chain;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clearLiveChain</span>() <span style="color:#75715e">//功能太单一,如果还有其它功能还得继续写函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        m_current_chain.clearList();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setLiveChain</span>(<span style="color:#66d9ef">const</span> CChain <span style="color:#f92672">&amp;</span>val)  <span style="color:#75715e">//不高效的做法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        m_current_chain <span style="color:#f92672">=</span> val;  <span style="color:#75715e">//一定调用复制构造函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   CChain  m_current_chain;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>修改后如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CChainExtraction</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> CChain <span style="color:#f92672">&amp;</span>getLiveChain() <span style="color:#66d9ef">const</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_current_chain;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    CChain <span style="color:#f92672">&amp;</span>getLiveChain()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_current_chain;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    clearLiveChain()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    可以用 getLiveChain().clear(); //替换
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    void setLiveChain(const CChain &amp;val)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    可以 getLiveChain() = val; //替换 某些清空下还可以不调用复制函数
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    //如果取消get开始更完美
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h1 id="三const-滥用">三、const 滥用</h1>
+<p>const 用于函数的输入参数时,表示本函数不对输入的参数进行修改.但对于基本数据类型类型时,函数内部修改与否都不对外部造成影响.(对函数内存处理限定有作用,一般不用限定)
+基础类型本身为cpu字长,不需要引用进行寻址(32位机某些类型除外),因此用于被滥用.
+下例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">//修改前
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TA</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setEn</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Ten</span> <span style="color:#f92672">&amp;</span>a)
+</span></span><span style="display:flex;"><span>    { 
+</span></span><span style="display:flex;"><span>        m_en <span style="color:#f92672">=</span> a;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>     
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> Ten <span style="color:#f92672">&amp;</span>getEn()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_en;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>     
+</span></span><span style="display:flex;"><span>    Ten m_en; 
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//修改后
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TA</span>
+</span></span><span style="display:flex;"><span>{ <span style="color:#75715e">//注意:其它基本类型也相似
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setEn</span>(Ten a) <span style="color:#75715e">//enum 可以省略.同样如果struct修饰也可以省略
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    { 
+</span></span><span style="display:flex;"><span>        m_en <span style="color:#f92672">=</span> a;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>     
+</span></span><span style="display:flex;"><span>    Ten <span style="color:#a6e22e">getEn</span>() <span style="color:#66d9ef">const</span> <span style="color:#75715e">//const限定方法, 本身字长不需要用都返回限定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> m_en;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>     
+</span></span><span style="display:flex;"><span>    Ten m_en; 
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h1 id="四总结">四、总结</h1>
+<ul>
+<li>如果参数能用引用绝不用指针!!</li>
+<li>如果参数能用 const 限定就必须加const 限定!!</li>
+<li>如果不得不用指针参数,请检查指针是否为空!</li>
+<li>如果能用const限定类方法,一定要采用const 限定!</li>
+<li>如果能用static限定类方法,一定要采样static 限定!(后问会说)</li>
+<li>如果能返回用引用获取值(类的成员)绝不用复制获取!</li>
+<li>如果返回为局部类,请大胆直接返回(不能返回引用)!!</li>
+<li>如果能将函数或成员用private或者protected修饰,一定不要用public.</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/c&#43;&#43;/" rel="tag">C&#43;&#43;</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Corsair-cxs avatar" src="/img/gedu.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 Corsair-cxs</span>
+	</div>
+	<div class="authorbox__description">
+		简介
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/3.c&#43;&#43;%E8%87%AA%E5%8A%A8%E6%8E%A8%E6%96%AD%E5%92%8C%E5%BE%AA%E7%8E%AF/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">C&#43;&#43;自动推断和循环</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">C&#43;&#43;构造析构</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

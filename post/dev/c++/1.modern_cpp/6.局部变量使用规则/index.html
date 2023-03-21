@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>C&#43;&#43; 局部变量使用规则 - 陈显森的GitBlog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="C&#43;&#43; 局部变量使用规则浅析">
+		<meta property="og:title" content="C&#43;&#43; 局部变量使用规则" />
+<meta property="og:description" content="C&#43;&#43; 局部变量使用规则浅析" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-16T00:00:00+00:00" />
+
+		<meta itemprop="name" content="C&#43;&#43; 局部变量使用规则">
+<meta itemprop="description" content="C&#43;&#43; 局部变量使用规则浅析"><meta itemprop="datePublished" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="527">
+<meta itemprop="keywords" content="C&#43;&#43;," />
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43; 局部变量使用规则"/>
+<meta name="twitter:description" content="C&#43;&#43; 局部变量使用规则浅析"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/gedu.jpg">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">陈显森的博客</div>
+					<div class="logo__tagline">正心诚意，格物致知</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/main/getting-started/">
+				
+				<span class="menu__text">主页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/post/">
+				
+				<span class="menu__text">博客文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/categories/">
+				
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">C&#43;&#43; 局部变量使用规则</h1>
+			<p class="post__lead">C&#43;&#43; 局部变量使用规则</p>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/development/" rel="category">Development</a>
+	</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1说明">1.说明</a></li>
+    <li><a href="#2例程">2.例程</a>
+      <ul>
+        <li><a href="#1类的实例空间结束时内存可以再利用stdmove">1.类的实例,空间结束时内存可以再利用.(std::move)</a></li>
+        <li><a href="#2类的生命周期已经结束可以提前释放">2.类的生命周期已经结束,可以提前释放</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h2 id="1说明">1.说明</h2>
+<p>局部变量为函数中常用的一直数据方式,它的初始化可以自己调用也可以由函数返回来完成.
+本着以尽可能少的调用复制构造或者赋值函数的前提下,应该尽可能的采样由函数返回初始化来完成.(类型可以用auto 推断,完美偷懒)
+对于生命周期来说,应该尽可能的靠近使用的地方,而不是在函数进入时统一声明.(申明调用构造函数需要浪费时间)
+如果某个类的实例的生命周期在本函数内,且占用大量空间,可以在使用完之后提前释放.</p>
+<h2 id="2例程">2.例程</h2>
+<h3 id="1类的实例空间结束时内存可以再利用stdmove">1.类的实例,空间结束时内存可以再利用.(std::move)</h3>
+<h4 id="a修改前">a.修改前</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span>  CLocalSectionMap<span style="color:#f92672">::</span>seedFloodFill(<span style="color:#66d9ef">const</span> CChainCell <span style="color:#f92672">&amp;</span>seed, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> raw_value, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> new_value, CChain <span style="color:#f92672">&amp;</span>seek_deque)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    seek_deque.clearList();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(isOutOfBounds(seed.getIdx(), seed.getIdy()))
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>CChainCell<span style="color:#f92672">&gt;</span> last_seeks ;
+</span></span><span style="display:flex;"><span>    last_seeks.push_back(seed);  
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span>CChainCell<span style="color:#f92672">&gt;</span> new_seeks;
+</span></span><span style="display:flex;"><span>     ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span>(<span style="color:#f92672">!</span>last_seeks.empty())
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        new_seeks.clear();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> last_seeks.size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            generateNewSeeks(last_seeks.at(i), raw_value, new_value, new_seeks);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(size_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> new_seeks.size(); i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            seek_deque.addUniqueElement(new_seeks.at(i));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        last_seeks.clear();  
+</span></span><span style="display:flex;"><span>        last_seeks <span style="color:#f92672">=</span> new_seeks;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="b修改后">b.修改后:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> CLocalSectionMap<span style="color:#f92672">::</span>seedFloodFill( <span style="color:#66d9ef">const</span> algo<span style="color:#f92672">::</span>CChainCell<span style="color:#f92672">&amp;</span> seed, <span style="color:#66d9ef">int</span> raw_value, <span style="color:#66d9ef">int</span> new_value,
+</span></span><span style="display:flex;"><span>                                      algo<span style="color:#f92672">::</span>CChain<span style="color:#f92672">&amp;</span> seek_deque)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span> algo<span style="color:#f92672">::</span>CChainCell <span style="color:#f92672">&gt;</span> last_seeks;
+</span></span><span style="display:flex;"><span>    last_seeks.push_back( seed);
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ( <span style="color:#f92672">!</span>last_seeks.empty())
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        std<span style="color:#f92672">::</span>deque<span style="color:#f92672">&lt;</span> algo<span style="color:#f92672">::</span>CChainCell <span style="color:#f92672">&gt;</span> new_seeks; <span style="color:#75715e">//声明周期局部化
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>v : last_seeks)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            generateNewSeeks(v, raw_value, new_value, new_seeks);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;</span>v : new_seeks)
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            seek_deque.addUniqueElement(v);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        last_seeks <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>move(new_seeks); <span style="color:#75715e">//右值拷贝效率高(相当于指针交换)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//注意右值后不要再访问new_seeks,否则后果不可预测.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="2类的生命周期已经结束可以提前释放">2.类的生命周期已经结束,可以提前释放</h3>
+<h4 id="a修改前-1">a.修改前</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> CPathPlanAstar<span style="color:#f92672">::</span>processPathPlan( ...)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    COccupiedGridMapProcess grid_map_process;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* Initialize the map */</span>
+</span></span><span style="display:flex;"><span>    initialMap(grid_map);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(m_coverage_plan_flag)
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        grid_map_process.setPunishmentLength(<span style="color:#ae81ff">0.05</span>);
+</span></span><span style="display:flex;"><span>        grid_map_process.setObstacleThreshold(m_params.obstacle_threshold);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        grid_map_process.setPunishmentLength(m_params.punishment_length);
+</span></span><span style="display:flex;"><span>        grid_map_process.setObstacleThreshold(m_params.obstacle_threshold);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    grid_map_process.gridMapInflation(grid_map, m_map_punishment, m_map); <span style="color:#75715e">//占用大量内存
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    fillBlank(grid_map, target_pose, m_params.punishment_length);
+</span></span><span style="display:flex;"><span>    ....
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="b修改后-1">b.修改后:</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> CPathPlanAstar<span style="color:#f92672">::</span>processPathPlan( ...)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>   ...
+</span></span><span style="display:flex;"><span>   {
+</span></span><span style="display:flex;"><span>       COccupiedGridMapProcess grid_map_process;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       initialMap(grid_map);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">if</span>(m_coverage_plan_flag)
+</span></span><span style="display:flex;"><span>       {
+</span></span><span style="display:flex;"><span>         grid_map_process.setPunishmentLength(<span style="color:#ae81ff">0.05</span>);
+</span></span><span style="display:flex;"><span>         grid_map_process.setObstacleThreshold(m_params.obstacle_threshold);
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>       {
+</span></span><span style="display:flex;"><span>         grid_map_process.setPunishmentLength(m_params.punishment_length);
+</span></span><span style="display:flex;"><span>         grid_map_process.setObstacleThreshold(m_params.obstacle_threshold);
+</span></span><span style="display:flex;"><span>       }
+</span></span><span style="display:flex;"><span>       grid_map_process.gridMapInflation(grid_map, m_map_punishment, m_map);
+</span></span><span style="display:flex;"><span>   } <span style="color:#75715e">//生命周期结束. 提前释放空间
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>   fillBlank(grid_map, target_pose, m_params.punishment_length);
+</span></span><span style="display:flex;"><span>   ....
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/c&#43;&#43;/" rel="tag">C&#43;&#43;</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Corsair-cxs avatar" src="/img/gedu.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 Corsair-cxs</span>
+	</div>
+	<div class="authorbox__description">
+		简介
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">C&#43;&#43;赋值和复制</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">C&#43;&#43; 降低复制时间</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
