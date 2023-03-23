@@ -5,19 +5,7 @@
     <link>https://corsair-cxs.github.io/docs/</link>
     <description>Recent content in Documentation on 陈显森的GitBlog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Mon, 24 Jan 2022 14:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>主页</title>
-      <link>https://corsair-cxs.github.io/docs/getting-started/</link>
-      <pubDate>Mon, 24 Jan 2022 14:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/docs/getting-started/</guid>
-      <description>&lt;p&gt;Welcome to the Mainroad theme documentation. This quick start guide covers Mainroad theme installation and minimal
-configuration and is intended for intermediate to advanced users. To understand this guide, you need to be familiar
-with the &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static site generator.&lt;/p&gt;</description>
-    </item>
-    
+    <language>zh-cn</language><atom:link href="https://corsair-cxs.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
       <link>https://corsair-cxs.github.io/docs/customization/</link>

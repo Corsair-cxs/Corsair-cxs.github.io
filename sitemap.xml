@@ -2,13 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://corsair-cxs.github.io/about/about/</loc>
+    <loc>https://corsair-cxs.github.io/about/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://corsair-cxs.github.io/docs/getting-started/</loc>
-    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/main/getting-started/</loc>
+    <loc>https://corsair-cxs.github.io/main/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://corsair-cxs.github.io/categories/</loc>
@@ -74,16 +71,7 @@
     <loc>https://corsair-cxs.github.io/post/dev/gedu/linuxcoredev/02_startup/</loc>
     <lastmod>2023-02-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://corsair-cxs.github.io/about/</loc>
-    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/docs/</loc>
-    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://corsair-cxs.github.io/tags/mainpage/</loc>
-    <lastmod>2022-01-24T14:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://corsair-cxs.github.io/main/</loc>
     <lastmod>2022-01-24T14:00:00+00:00</lastmod>
   </url><url>
     <loc>https://corsair-cxs.github.io/docs/customization/</loc>
@@ -93,5 +81,7 @@
     <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/0.startup/vscode_setup/</loc>
   </url><url>
     <loc>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/2.type_inference/reference/</loc>
+  </url><url>
+    <loc>https://corsair-cxs.github.io/docs/</loc>
   </url>
 </urlset>
