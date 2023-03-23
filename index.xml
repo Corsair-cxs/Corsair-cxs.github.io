@@ -6,7 +6,7 @@
     <description>Recent content on 陈显森的GitBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 16 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于我</title>
       <link>https://corsair-cxs.github.io/about/about/</link>
@@ -38,6 +38,15 @@ with the &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static site g
       <description>&lt;p&gt;Welcome to the Mainroad theme documentation. This quick start guide covers Mainroad theme installation and minimal
 configuration and is intended for intermediate to advanced users. To understand this guide, you need to be familiar
 with the &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; static site generator.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows安装posh</title>
+      <link>https://corsair-cxs.github.io/post/misc/oh-my-posh/</link>
+      <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/misc/oh-my-posh/</guid>
+      <description>Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章</description>
     </item>
     
     <item>
@@ -185,15 +194,6 @@ Answers to general questions without any lines of code. Answers to technical que
       
       <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/2.type_inference/reference/</guid>
       <description>https://www.geeksforgeeks.org/type-inference-in-c-auto-and-decltype/</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://corsair-cxs.github.io/post/misc/oh-my-posh/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/post/misc/oh-my-posh/</guid>
-      <description>Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章</description>
     </item>
     
   </channel>

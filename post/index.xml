@@ -6,7 +6,16 @@
     <description>Recent content in Posts on 陈显森的GitBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 16 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows安装posh</title>
+      <link>https://corsair-cxs.github.io/post/misc/oh-my-posh/</link>
+      <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/misc/oh-my-posh/</guid>
+      <description>Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章</description>
+    </item>
+    
     <item>
       <title>【转】谈谈编译期优化</title>
       <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/</link>
@@ -131,15 +140,6 @@
       
       <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/2.type_inference/reference/</guid>
       <description>https://www.geeksforgeeks.org/type-inference-in-c-auto-and-decltype/</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://corsair-cxs.github.io/post/misc/oh-my-posh/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/post/misc/oh-my-posh/</guid>
-      <description>Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章</description>
     </item>
     
   </channel>
