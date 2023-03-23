@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title> - 陈显森的GitBlog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+		<meta property="og:title" content="" />
+<meta property="og:description" content="Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://corsair-cxs.github.io/post/misc/oh-my-posh/" /><meta property="article:section" content="post" />
+
+
+
+		<meta itemprop="name" content="">
+<meta itemprop="description" content="Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章">
+
+<meta itemprop="wordCount" content="1302">
+<meta itemprop="keywords" content="" />
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/gedu.jpg">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">陈显森的博客</div>
+					<div class="logo__tagline">正心诚意，格物致知</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/main/getting-started/">
+				
+				<span class="menu__text">主页</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/post/">
+				
+				<span class="menu__text">博客文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/categories/">
+				
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title"></h1>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div></div>
+		</header>
+		
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-安装">1. 安装</a></li>
+    <li><a href="#2-配置">2. 配置</a></li>
+    <li><a href="#3-使用-posh-git">3: 使用 posh-git</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#wget下载安装">wget下载安装</a></li>
+    <li><a href="#升级oh-my-posh">升级oh-my-posh</a></li>
+    <li><a href="#下载字体">下载字体</a></li>
+    <li><a href="#设置主题">设置主题</a></li>
+    <li><a href="#下载icons">下载icons</a></li>
+    <li><a href="#特别提示">特别提示</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#powershell按tab键自动提示">PowerShell按TAB键自动提示</a></li>
+  </ul>
+</nav>
+	</div>
+</div><div class="content post__content clearfix">
+			<h1 id="windows安装posh">Windows安装posh</h1>
+<blockquote>
+<p>前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章将介绍posh相关工具在Windows上安装的步骤，如有文笔不当之处还望指出。</p>
+</blockquote>
+<hr>
+<h1 id="环境要求默认已在windows系统上安装">环境要求（默认已在Windows系统上安装）</h1>
+<ul>
+<li>WindowsTerminal（微软商店下载安装）</li>
+<li>Git(且已激活环境变量)</li>
+</ul>
+<h1 id="安装posh-git">安装posh-git</h1>
+<h2 id="1-安装">1. 安装</h2>
+<p>在 Windows 上，脚本执行策略必须设置为 RemoteSigned 或 Unlimited，需要以管理员身份在powershell中执行以下语句:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm
+</span></span></code></pre></div><p>安装posh-git:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Install-Module PowershellGet -Force
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##A completely new installation</span>
+</span></span><span style="display:flex;"><span>PowerShellGet\Install-Module posh-git -Scope CurrentUser -Force
+</span></span></code></pre></div><p>更新:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>PowerShellGet\Update-Module posh-git
+</span></span></code></pre></div><h2 id="2-配置">2. 配置</h2>
+<p>在powershell终端对<code>$PROFILE</code>文件进行编辑：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>notepad $PROFILE
+</span></span></code></pre></div><p>在文件中追加以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Import-Module posh-git
+</span></span></code></pre></div><p>其他可选项:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e">##To enable posh-git to be available in just the current host, execute:</span>
+</span></span><span style="display:flex;"><span>Add-PoshGitToProfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##To enable posh-git to be available in all your PowerShell hosts-console, ISE, etc, execute:</span>
+</span></span><span style="display:flex;"><span>Add-PoshGitToProfile -AllHosts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##To enable posh-git to be available for all users on the system, execute:</span>
+</span></span><span style="display:flex;"><span>Add-PoshGitToProfile -AllUsers -AllHosts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##To enable posh-git to be available for all users but only for the current host</span>
+</span></span><span style="display:flex;"><span>Add-PoshGitToProfile -AllUsers
+</span></span></code></pre></div><h2 id="3-使用-posh-git">3: 使用 posh-git</h2>
+<p>接下来可以克隆一个git仓库，看看posh-git的效果:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>git clone https<span style="color:#960050;background-color:#1e0010">:</span>//github.com/dahlbyk/posh-git
+</span></span><span style="display:flex;"><span>cd posh-git
+</span></span></code></pre></div><p>如果看到与下图类似的表示，则说明posh-git安装成功：</p>
+<p><img src="https://computingforgeeks.com/wp-content/uploads/2020/11/posh-git-showing-branch.png?ezimgfmt=rs:696x227/rscb23/ng:webp/ngcb23" alt="posh git showing branch"></p>
+<h1 id="安装oh-my-posh">安装oh-my-posh</h1>
+<h2 id="wget下载安装">wget下载安装</h2>
+<p>用管理员权限打开powershell，用winget安装oh-my-posh:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>winget install JanDeDobbeleer.OhMyPosh -s winget
+</span></span></code></pre></div><p>运行上述命令后，会下载安装<code>oh-my-posh.exe</code>和<code>Oh My Posh</code>的主题。</p>
+<h2 id="升级oh-my-posh">升级oh-my-posh</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>winget upgrade JanDeDobbeleer.OhMyPosh -s winget
+</span></span></code></pre></div><h2 id="下载字体">下载字体</h2>
+<p>运行以下语句，选择你要安装的字体</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>oh-my-posh font install
+</span></span></code></pre></div><p>我安装的是基于 Cascadia Code 设计的 <a href="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/CascadiaCode.zip">Caskaydia Cove Nerd Font</a></p>
+<p><a href="https://www.nerdfonts.com/font-downloads">在这里可以找到所有可下载的字体</a></p>
+<p>打开Windows Terminal软件，点击设置-<code>打开json文件</code>，在<code>profiles</code>段的<code>defaults</code>属性中,添加<code>font.face</code>属性如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;profiles&#34;</span>:
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;defaults&#34;</span>:
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&#34;font&#34;</span>:
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&#34;face&#34;</span>: <span style="color:#e6db74">&#34;Caskaydia NF&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>eg:</p>
+<p><img src="pic/image-20230323174928183.png" alt="image-20230323174928183"></p>
+<p>如果<code>git::</code>和<code>master</code>之间的字符没乱码，证明安装成功</p>
+<p><img src="pic/image-20230323175152282.png" alt="image-20230323175152282"></p>
+<h2 id="设置主题">设置主题</h2>
+<p>在新的powershell终端中，<code>$POSH_THEMES_PATH</code>指向了posh的主题路径。可以依此设置posh主题(以ys主题为例)，将下述语句添加到powershell的<code>$PROFILE</code>文件中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>oh-my-posh init pwsh --config <span style="color:#e6db74">&#34;</span>$env:POSH_THEMES_PATH<span style="color:#e6db74">\jandedobbeleer.ys.json&#34;</span>
+</span></span></code></pre></div><p>重新开终端，可以看到配置生效</p>
+<p><img src="pic/image-20230323171301666.png" alt="image-20230323171301666"></p>
+<h2 id="下载icons">下载icons</h2>
+<p>安装：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Install-Module -Name Terminal-Icons -Repository PSGallery
+</span></span></code></pre></div><p>将下述语句添加到powershell的<code>$PROFILE</code>文件中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>Import-Module -Name Terminal-Icons
+</span></span></code></pre></div><p>重新启动终端，运行ls，看看效果：</p>
+<p><img src="https://github.com/devblackops/Terminal-Icons/raw/main/media/screenshot.png" alt="Screenshot 1"></p>
+<h2 id="特别提示">特别提示</h2>
+<blockquote>
+<ol>
+<li>
+<p>由于<code>Oh My Posh</code>经常更新，有时候会被杀毒软件报错。以防万一，可以将<code>oh-my-posh.exe</code>添加到杀毒软件的白名单。PS: 在Powershell终端输入
+<code>(Get-Command oh-my-posh).Source</code>可获得可执行文件的路径</p>
+</li>
+<li>
+<p>powershell的<code>$PROFILE</code>文件需要额外注意，包含&quot;oh-my-posh init pwsh&quot;的语句最好只出现一次，否则很容易触发终端报错。如：</p>
+<pre tabindex="0"><code>Get-PSReadLineKeyHandler : 找不到与参数名称“Key”匹配的参数
+</code></pre><p>综合以上两点，<strong>针对oh-my-posh</strong>，可以在<code>$PROFILE</code>文件中<strong>只添加</strong>这一句语句:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>&amp; ([<span style="color:#66d9ef">ScriptBlock</span>]::Create((oh-my-posh init pwsh --config <span style="color:#e6db74">&#34;</span>$env:POSH_THEMES_PATH<span style="color:#e6db74">\ys.omp.json&#34;</span> --print) -join <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">`n</span><span style="color:#e6db74">&#34;</span>))
+</span></span></code></pre></div></li>
+</ol>
+</blockquote>
+<h1 id="其他小技巧">其他小技巧</h1>
+<h2 id="powershell按tab键自动提示">PowerShell按TAB键自动提示</h2>
+<p>在powershell的<code>$PROFILE</code>文件中，追加以下内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Shows navigable menu of all options when hitting Tab</span>
+</span></span><span style="display:flex;"><span>Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+</span></span></code></pre></div><h1 id="参考链接">参考链接</h1>
+<ul>
+<li><a href="https://github.com/dahlbyk/posh-git">https://github.com/dahlbyk/posh-git</a></li>
+<li><a href="https://ohmyposh.dev/docs/installation/windows">https://ohmyposh.dev/docs/installation/windows</a></li>
+<li><a href="https://ohmyposh.dev/docs/installation/prompt">https://ohmyposh.dev/docs/installation/prompt</a></li>
+<li><a href="https://techcommunity.microsoft.com/t5/itops-talk-blog/autocomplete-in-powershell/ba-p/2604524">https://techcommunity.microsoft.com/t5/itops-talk-blog/autocomplete-in-powershell/ba-p/2604524</a></li>
+<li><a href="https://learn.microsoft.com/en-us/windows/terminal/tutorials/custom-prompt-setup">Windows Terminal Custom Prompt Setup | Microsoft Learn</a></li>
+<li><a href="https://www.cnblogs.com/uncmd/p/16885797.html">记录美化Windows Terminal - bkycmd - 博客园 (cnblogs.com)</a></li>
+</ul>
+
+		</div>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Corsair-cxs avatar" src="/img/gedu.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 Corsair-cxs</span>
+	</div>
+	<div class="authorbox__description">
+		简介
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/2.type_inference/reference/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title"></p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://bing.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索…" value="" name="q" aria-label="搜索…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://corsair-cxs.github.io/">
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/docs/getting-started/">主页</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/">【转】谈谈编译期优化</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/">C&#43;&#43; return等关键字编写规则</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/">C&#43;&#43; static的使用</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/">C&#43;&#43; std function和bind的用法</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/">C&#43;&#43; vector与dequeue的特性</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/">C&#43;&#43; 降低复制时间</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/">C&#43;&#43; 局部变量使用规则</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/">C&#43;&#43;赋值和复制</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/">C&#43;&#43;构造析构</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/development/">Development</a>&nbsp;
+				<span class="widget__counter widget__counter--bubble">12</span>
+				</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/c&#43;&#43;/" title="C&#43;&#43;">C&#43;&#43; (11)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux (1)</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/mainpage/" title="MainPage">MainPage (3)</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:1494089474@qq.com">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>1494089474@qq.com</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/Corsair-cxs" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Gitee" rel="noopener noreferrer" href="https://gitee.com/cxs5534" target="_blank">
+				<svg version="1.1" viewBox="0 0 24 24" width="0.200017in" height="0.200017in" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAABJ0AAASdAHeZh94AAACV0lEQVQ4T62UzWsTQRjGn012sx/5ampACR6sF+vm4Em8ebQYeghFvOgfUBX1YhHpxaNW8eJJ1INFRfRQoggqCuJBLAjVq9ZTsWljaEhCOpv9yMh2J9ndZDdWyMMedt73nd/OPO/McqqqYhSKjAJiM/ghIArQ8DQHcJ5sAIiCtojWItuxtsHRYJRNyYwlZbnH6gdZlFbXy3PF4uz5C+m8CkFAIEuMPbx4+frrVylZDgBZlDbK5dW378aOHXXSQ5SfPGSWlnoF7oooUNna+nzv/m4odpt4gTF25IJ0yzyeGZ88fYplgDe371i6zkUCOqtI0t0Xz+PdfflAba1dPHOWhYHCgYNfdE0S+k1kaUCRZJF3s+6b2ens37uPVW1UPtZrE7lck5Bmo8GCfvFR3gvyLpuKvQZxEZHnm4RcLUzXNiu1n7/6n83KfGG6SQirH2w/C+/INI2JvIpoBJk0C3l05LBqvFwCmE0BRjoJR7FoqEeGaXSrbIXW2XbKyoPFR9TQCdFgXxdqtfWZ+WvOzAjnvSFhIGq7JfL81z+VTzdvODMpsLG2Rs/NYjwDYF0jEc7dUMiKZLFVrf4G7X2UAkaLLBRnHAqAleVlQXDPZAgonTLqTWgaeuunFIqMRJwNTevJh/dKLseGwzxKJZBKsKoBXToxhWzWa5Ova5LkHvmBuW7gytTJZ6s/4qLorXG3FpeVW08fz4Fqmt2jPnFAvdNZ+f5tsVQiezLZZNLXM8D3z26bZots9zO6Yw6cIAiyKEb9jXeyPrNFnheTKSfxv/rHyd49bjQgAH8B3UnJFSBzxK8AAAAASUVORK5CYII="/></svg>
+				<span> &nbsp&nbsp Gitee</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="CSDN" rel="noopener noreferrer" href="https://blog.csdn.net/cxs5534" target="_blank">
+				<svg version="1.1" viewBox="0 0 24 24" width="0.200017in" height="0.200017in" baseProfile="full" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><image x="0" y="0" width="24" height="24" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAACXBIWXMAABJ0AAASdAHeZh94AAAB7ElEQVQ4T+2UsarqMBzGU1t6tLYUh4Lgoo4u3QSlj9FJnAQ3cfAFnJzE0cFJF9/APoEuzg4udlBqFRS0Dhqbprlw4qna673H4UyX+039ku//S5r8CZPL5cBPKPITkH8cxP3pjAghrutCCBFCnucRQmiS4zie52VZDhW+BkEI9/u9pmm6rheLxXQ6/fHxQSvX6/V0Oq3X6yFWGEQI2e12mqYNh0NBEELLAgBSqVShUHBdNzT1BCKEbDabTqdTqVQec+Px+Hw+MwyDMVZV1TRNjgvv4MmfTqdGo/FIKZVKo9FIEASGYSgaY8xxXCKReFwJAHDvbIwxQsg0zSChqurhcBBFMaD8RffOhhCWy+UgOplMLMuSJOkdyhMIY5zNZm8YABaLRTQavZk3dN8Ry7Kr1Sooyefzx+MxaJ9vxSqKQkMsy85ms1qtRq2iKBhjwzAIIZ7nIYQun8IY8zxPM496ekYcx6lWq81mM0hcLhfDMJbLpeM4mUwmmUyaptlut0VRvCW+9HT9six3u13btnu9Hg3EYjFd1+k3Vb/f933/y911/zU6Fo/H5/N5q9WybZtaSZLolOd52+12MBhYlvV7Q75+IX3fhxBer1eEEMaYghiGYVlWkqSXtxnudFoTiUSET1H7jv4/td+cEgDgFwCe0OQBzCdoAAAAAElFTkSuQmCC"/></svg>
+				<span> &nbsp&nbsp CSDN </span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

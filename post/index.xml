@@ -133,5 +133,14 @@
       <description>https://www.geeksforgeeks.org/type-inference-in-c-auto-and-decltype/</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>https://corsair-cxs.github.io/post/misc/oh-my-posh/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/misc/oh-my-posh/</guid>
+      <description>Windows安装posh 前言：相信很多用户都有对powershell改造的想法，例如安装更多主题，支持git显示，显示命令提示等。本篇文章</description>
+    </item>
+    
   </channel>
 </rss>
