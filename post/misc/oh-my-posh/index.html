@@ -17,7 +17,7 @@
 		<meta itemprop="name" content="Windows安装posh">
 <meta itemprop="description" content="Windows安装posh"><meta itemprop="datePublished" content="2023-03-23T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2023-03-23T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1307">
+<meta itemprop="wordCount" content="1360">
 <meta itemprop="keywords" content="Powershell," />
 		<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Windows安装posh"/>
@@ -202,6 +202,8 @@
 <p><img src="pic/image-20230323174928183.png" alt="image-20230323174928183"></p>
 <p>如果<code>git::</code>和<code>master</code>之间的字符没乱码，证明安装成功</p>
 <p><img src="pic/image-20230323175152282.png" alt="image-20230323175152282"></p>
+<p>Vscode终端设置也是类似，设置<code>terminal font family</code>为<code>CaskaydiaCove NF Mono</code>即可</p>
+<p><img src="pic/image-20230324100149625.png" alt="image-20230324100149625"></p>
 <h2 id="设置主题">设置主题</h2>
 <p>在新的powershell终端中，<code>$POSH_THEMES_PATH</code>指向了posh的主题路径。可以依此设置posh主题(以ys主题为例)，将下述语句添加到powershell的<code>$PROFILE</code>文件中：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>oh-my-posh init pwsh --config <span style="color:#e6db74">&#34;</span>$env:POSH_THEMES_PATH<span style="color:#e6db74">\jandedobbeleer.ys.json&#34;</span>
@@ -277,6 +279,12 @@
 		<a class="pager__link" href="/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/" rel="prev">
 			<span class="pager__subtitle">«&thinsp;上一篇</span>
 			<p class="pager__title">【转】谈谈编译期优化</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/dev/linux/oslab/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Linux0.11内核入门</p>
 		</a>
 	</div>
 </nav>
