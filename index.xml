@@ -152,53 +152,5 @@
       <description>&lt;p&gt;本讲的主要内容是“创立门厅”，顾名思义是创立一个空间，并且程序在空间内活动&lt;/p&gt;</description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://corsair-cxs.github.io/docs/customization/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/docs/customization/</guid>
-      <description>This section will mainly cover Blogs settings that are unique to this theme. If something is not covered here, there&amp;rsquo;s a good chance it is covered somewhere in Hugo docs.
-Logo Mainroad allows you to set a custom logo in the site header. You may use text, or image, or both. Use the following options in your site config:
-[Params.logo] image = &amp;#34;img/placeholder.png&amp;#34; title = &amp;#34;Mainroad&amp;#34; subtitle = &amp;#34;Just another site&amp;#34; Note: logo image will display at a maximum width of 128 pixels and a maximum height of 128 pixels when you use text and image simultaneously.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://corsair-cxs.github.io/docs/faq/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/docs/faq/</guid>
-      <description>The answers have been categorized into two groups:
-Answers to general questions without any lines of code. Answers to technical questions with code snippets, step-by-step instructions, etc. General questions Do I need to have prior experience before proceeding with the Mainroad theme? Yes. You&amp;rsquo;ll need to be familiar with Hugo before proceeding. Our docs section is intended for intermediate to advanced users and developers. Our documentation may still be helpful to users with minimal experience, but are not comprehensive.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://corsair-cxs.github.io/post/csprinciple/os/process/startup/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/post/csprinciple/os/process/startup/</guid>
-      <description>&lt;p&gt;操作系统进程基本概念&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/0.startup/vscode_setup/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/0.startup/vscode_setup/</guid>
-      <description>vscode配置指南</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/2.type_inference/reference/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/2.type_inference/reference/</guid>
-      <description>https://www.geeksforgeeks.org/type-inference-in-c-auto-and-decltype/</description>
-    </item>
-    
   </channel>
 </rss>
