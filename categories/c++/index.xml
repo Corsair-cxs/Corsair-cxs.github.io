@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on 陈显森的GitBlog</title>
+    <link>https://corsair-cxs.github.io/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on 陈显森的GitBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 18 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43; return等关键字编写规则</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/</guid>
+      <description>在c++中有3中改变语义顺序的关键字 return、break、continue.当它们和if组合时,有2种写法. 法1 法2 实现方式 语义转换用e</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; std function和bind的用法</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
+      <description>c++内部存在2种函数指针,普通函数指针(和c语言一样)与成员函数指针. 两者的区别在于成员函数指针多了一个对象指针. 普通函数调用本质是通过普</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 降低复制时间</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/</guid>
+      <description>一,说明 由于开发过程中需要对大量数据进行处理,因此某些类中含有大数据结构(vector,deque, map等),很多时候需要对结果或者中间过</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; static的使用</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1.说明 static 为静态.说明如下const 情况 说明 使用场景 修饰变量 本进程中只有一份. 生命周期开始于main函数前,结束于main函数后 单例, 全局统</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; vector与dequeue的特性</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/</guid>
+      <description>1.特性说明 两者在功能上存在相似,在使用上也存在争议.争议点在于vector内存占用过大.接下来我将会比较二者的特点,剖析到底要怎么用.下表</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; 局部变量使用规则</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/</link>
+      <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/</guid>
+      <description>1.说明 局部变量为函数中常用的一直数据方式,它的初始化可以自己调用也可以由函数返回来完成. 本着以尽可能少的调用复制构造或者赋值函数的前提下,</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;赋值和复制</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/2.%E8%B5%8B%E5%80%BC%E5%92%8C%E5%A4%8D%E5%88%B6/</guid>
+      <description>一.说明 c++11 值的类型分为 左值, 纯右值,将亡值(return 返回). 将亡值属于右值. c++11 中引入了右值引用和移动语义,可以避免无谓的复制,提高了程序</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;构造析构</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/1.%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84/</guid>
+      <description>1.单个类说明 类的生命周期起始于构造函数,终止于析构函数.可以在栈(直接使用)上创建也可以在堆(new 产生)上创建,也可以限制允许在一种情况</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;函数的参数与返回</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/4.%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/4.%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E/</guid>
+      <description>函数的参数与返回 一、函数的参数 1.3种类型的c++函数参数 基本数据类型(内建类型)、指针或引用、类(结构体). 具体说明如下表： 类型 大小 例子 基</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;自动推断和循环</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/3.c&#43;&#43;%E8%87%AA%E5%8A%A8%E6%8E%A8%E6%96%AD%E5%92%8C%E5%BE%AA%E7%8E%AF/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/3.c&#43;&#43;%E8%87%AA%E5%8A%A8%E6%8E%A8%E6%96%AD%E5%92%8C%E5%BE%AA%E7%8E%AF/</guid>
+      <description>一.自动推断说明 1. 说明 自动推断有2个常用关键字auto与 decltype.具体如下表所示： auto: 自动推断的关键字,一切赋值时需要的情况(for循</description>
+    </item>
+    
+  </channel>
+</rss>

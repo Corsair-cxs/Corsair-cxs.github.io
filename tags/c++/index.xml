@@ -6,65 +6,74 @@
     <description>Recent content in C&#43;&#43; on 陈显森的GitBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 16 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 21 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>【转】谈谈编译期优化</title>
-      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/</link>
-      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      <title>Optimizing C&#43;&#43; Compile Time</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/optimizing-c&#43;&#43;-compile-time/</link>
+      <pubDate>Tue, 21 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compile_optimize/</guid>
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/optimizing-c&#43;&#43;-compile-time/</guid>
+      <description>Optimizing C++ Compile Time 编译是静态语言不可避免的步骤。 对于开发者而言，编译是个又爱又恨的东西，好处是他可以帮助在编译时期找出部分的错误又可以帮忙最佳化，但是</description>
+    </item>
+    
+    <item>
+      <title>谈谈编译期优化</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/compiler_optimization_techniques/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/compiler_optimization_techniques/</guid>
       <description>谈谈编译期优化 代码的维护是一个长期且持久的过程，而大型C++工程项目都会面临编译耗时较长的问题。不管是开发、测试，亦或是持续集成阶段，编译行</description>
     </item>
     
     <item>
       <title>C&#43;&#43; return等关键字编写规则</title>
       <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/</link>
-      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/9.return%E7%AD%89%E5%85%B3%E9%94%AE%E5%AD%97%E7%BC%96%E5%86%99%E8%A7%84%E5%88%99/</guid>
       <description>在c++中有3中改变语义顺序的关键字 return、break、continue.当它们和if组合时,有2种写法. 法1 法2 实现方式 语义转换用e</description>
     </item>
     
     <item>
-      <title>C&#43;&#43; static的使用</title>
-      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
-      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
-      <description>1.说明 static 为静态.说明如下const 情况 说明 使用场景 修饰变量 本进程中只有一份. 生命周期开始于main函数前,结束于main函数后 单例, 全局统</description>
-    </item>
-    
-    <item>
       <title>C&#43;&#43; std function和bind的用法</title>
       <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/</link>
-      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/10.std-function%E5%92%8Cbind%E7%9A%84%E7%94%A8%E6%B3%95/</guid>
       <description>c++内部存在2种函数指针,普通函数指针(和c语言一样)与成员函数指针. 两者的区别在于成员函数指针多了一个对象指针. 普通函数调用本质是通过普</description>
     </item>
     
     <item>
-      <title>C&#43;&#43; vector与dequeue的特性</title>
-      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/</link>
-      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/</guid>
-      <description>1.特性说明 两者在功能上存在相似,在使用上也存在争议.争议点在于vector内存占用过大.接下来我将会比较二者的特点,剖析到底要怎么用.下表</description>
-    </item>
-    
-    <item>
       <title>C&#43;&#43; 降低复制时间</title>
       <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/</link>
-      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/8.%E9%99%8D%E4%BD%8E%E5%A4%8D%E5%88%B6%E6%97%B6%E9%97%B4/</guid>
       <description>一,说明 由于开发过程中需要对大量数据进行处理,因此某些类中含有大数据结构(vector,deque, map等),很多时候需要对结果或者中间过</description>
     </item>
     
     <item>
+      <title>C&#43;&#43; static的使用</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/5.static%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>1.说明 static 为静态.说明如下const 情况 说明 使用场景 修饰变量 本进程中只有一份. 生命周期开始于main函数前,结束于main函数后 单例, 全局统</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43; vector与dequeue的特性</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/</link>
+      <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/7.vector%E4%B8%8Edequeue%E7%9A%84%E7%89%B9%E6%80%A7/</guid>
+      <description>1.特性说明 两者在功能上存在相似,在使用上也存在争议.争议点在于vector内存占用过大.接下来我将会比较二者的特点,剖析到底要怎么用.下表</description>
+    </item>
+    
+    <item>
       <title>C&#43;&#43; 局部变量使用规则</title>
       <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/</link>
-      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Feb 2023 00:00:00 +0000</pubDate>
       
       <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/1.modern_cpp/6.%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99/</guid>
       <description>1.说明 局部变量为函数中常用的一直数据方式,它的初始化可以自己调用也可以由函数返回来完成. 本着以尽可能少的调用复制构造或者赋值函数的前提下,</description>

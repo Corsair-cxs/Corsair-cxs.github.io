@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Compile on 陈显森的GitBlog</title>
+    <link>https://corsair-cxs.github.io/categories/compile/</link>
+    <description>Recent content in Compile on 陈显森的GitBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 21 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://corsair-cxs.github.io/categories/compile/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Optimizing C&#43;&#43; Compile Time</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/optimizing-c&#43;&#43;-compile-time/</link>
+      <pubDate>Tue, 21 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/optimizing-c&#43;&#43;-compile-time/</guid>
+      <description>Optimizing C++ Compile Time 编译是静态语言不可避免的步骤。 对于开发者而言，编译是个又爱又恨的东西，好处是他可以帮助在编译时期找出部分的错误又可以帮忙最佳化，但是</description>
+    </item>
+    
+    <item>
+      <title>谈谈编译期优化</title>
+      <link>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/compiler_optimization_techniques/</link>
+      <pubDate>Mon, 20 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/compiler_optimization_techniques/</guid>
+      <description>谈谈编译期优化 代码的维护是一个长期且持久的过程，而大型C++工程项目都会面临编译耗时较长的问题。不管是开发、测试，亦或是持续集成阶段，编译行</description>
+    </item>
+    
+  </channel>
+</rss>

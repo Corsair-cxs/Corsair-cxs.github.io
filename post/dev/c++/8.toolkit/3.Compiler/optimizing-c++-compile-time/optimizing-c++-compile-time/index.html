@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>【转】Optimizing C&#43;&#43; Compile Time - 陈显森的GitBlog</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Optimizing C&#43;&#43; Compile Time">
+		<meta property="og:title" content="【转】Optimizing C&#43;&#43; Compile Time" />
+<meta property="og:description" content="Optimizing C&#43;&#43; Compile Time" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://corsair-cxs.github.io/post/dev/c&#43;&#43;/8.toolkit/3.compiler/optimizing-c&#43;&#43;-compile-time/optimizing-c&#43;&#43;-compile-time/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2023-02-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-16T00:00:00+00:00" />
+
+		<meta itemprop="name" content="【转】Optimizing C&#43;&#43; Compile Time">
+<meta itemprop="description" content="Optimizing C&#43;&#43; Compile Time"><meta itemprop="datePublished" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2023-02-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2547">
+<meta itemprop="keywords" content="C&#43;&#43;," />
+		<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【转】Optimizing C&#43;&#43; Compile Time"/>
+<meta name="twitter:description" content="Optimizing C&#43;&#43; Compile Time"/>
+
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/custom.css">
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo logo--mixed">
+		<a class="logo__link" href="/" title="陈显森的博客" rel="home">
+			<div class="logo__item logo__imagebox">
+					<img class="logo__img" src="/img/gedu.jpg">
+				</div><div class="logo__item logo__text">
+					<div class="logo__title">陈显森的博客</div>
+					<div class="logo__tagline">正心诚意，格物致知</div>
+				</div>
+		</a>
+	</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/post/">
+				
+				<span class="menu__text">博客文章</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/categories/">
+				
+				<span class="menu__text">所有分类</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/tags/">
+				
+				<span class="menu__text">所有标签</span>
+				
+			</a>
+		</li>
+		<li class="menu__item">
+			<a class="menu__link" href="/about">
+				
+				<span class="menu__text">关于我</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">【转】Optimizing C&#43;&#43; Compile Time</h1>
+			<p class="post__lead">【转】Optimizing C&#43;&#43; Compile Time</p>
+			<div class="post__meta meta"><div class="meta__item-author meta__item">
+	<svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2 0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class="meta__text">Corsair-cxs</span>
+</div>
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2023-02-16T00:00:00Z">2023-02-16</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/compile/" rel="category">Compile</a>
+	</span>
+</div></div>
+		</header>
+		<div class="content post__content clearfix">
+			<h1 id="optimizing-c-compile-time">Optimizing C++ Compile Time</h1>
+<p>原文链接: <a href="https://ssarcandy.tw/2022/06/11/optimizing-compile-time/">https://ssarcandy.tw/2022/06/11/optimizing-compile-time/</a>
+编译是静态语言不可避免的步骤。 对于开发者而言，编译是个又爱又恨的东西，好处是他可以帮助在编译时期找出部分的错误又可以帮忙最佳化，但是坏处则是编译要时间，当项目越来越大时，小小改个档案可能就要花数分钟去等编译。</p>
+<p><img src="./image-20221227221102038.png" alt="image-20221227221102038"></p>
+<p>随着 C++ 的发展，现在 modern C++ 如 C++14， 17 等等，新增了更多方式让开发者在编译时期完成更多事情，比如说更方便的等等功能。 而这其实也是被鼓励的，因为能在编译时期就处理完的话就可以让 runtime 执行得更快！if contexpr
+但当大量使用 template 或引用更多的 library 也让 compiler 的工作越来越多，而如果每改几行就要等待编译几分钟才能知道执行结果的话，对于一天要编译数百次的开发者而言实在是太浪费生命了。
+本篇文章就要来探讨各种加速 C++ Compile Time 的方式，大部分的方法都是 Stack Overflow 搜刮来，然后由我自行实测。 测试环境如下：</p>
+<ul>
+<li>Ubuntu 18.04 LTS</li>
+<li>GCC 9</li>
+<li>CMake 3.23</li>
+<li>Ninja 1.8</li>
+<li>Project LOC ~20k</li>
+</ul>
+<h1 id="use-ccache">Use ccache</h1>
+<p>引入 ccache 绝对是效益最高的加速方式，完全不用改程序就可以减少大量的编译时间。 ccache 是一个全局的 compiler cache，藉由快取编译的中继档来节省重新编译的时间。 安装好以后只要在 中加入：CMakeLists.txt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-cmake" data-lang="cmake"><span style="display:flex;"><span><span style="color:#75715e"># CMakeLists.txt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>SET_PROPERTY(<span style="color:#e6db74">GLOBAL</span> <span style="color:#e6db74">PROPERTY</span> <span style="color:#e6db74">RULE_LAUNCH_COMPILE</span> <span style="color:#e6db74">ccache</span>)<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>即可使用，如果项目没使用 build tools 的话，则是直接在指令前加上<code>ccache</code>, <code>gcc  ccache</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># before</span>
+</span></span><span style="display:flex;"><span>$ /usr/bin/gcc main.cpp
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># after</span>
+</span></span><span style="display:flex;"><span>$ ccache /usr/bin/gcc main.cpp
+</span></span></code></pre></div><p>使用 ccache 之后整体编译速度大约可以提升两倍以上，十分赞！</p>
+<h1 id="use-forward-declaration-as-more-as-possible">Use forward declaration as more as possible</h1>
+<p>C++ 的 关键词其实就是复制粘贴，所以当你在 A.h include 了 B.h，在预处理阶段编译器会把 B.h 内容复制到 A.h，而如果不幸的 B.h 又 include 一堆档案，那也会通通展开。 所以如果引用太多档案，除了会造成预处理之后档案肥大以外，也会造成档案之间相依性混乱，间接导致每次编译要重新编译不必要的档案。#include</p>
+<p>除了将没用的 include 清干净以外，还可以更激进的避免在 header include 东西，那就是利用 forward declaration。
+<img src="./image-20221227221151475.png" alt="image-20221227221151475"></p>
+<p>试想以上情境，当你变更 A.h 时，A B C 都必须重新编译，因为内容改变了，但实际上 C 并未使用到 A，其实应该可以避免重新编译 C。</p>
+<p>由于C会重新编译是因为 B.h 内容改变了，而 B.h 内容改变的原因则是因为 A.h 更新了。 这时候可以查看为甚么 B.h 需要引用 A.h，看看是否可以避免引用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/// B.h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;A.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>class B {
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// ...skip
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> private:
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> A<span style="color:#f92672">&amp;</span> a;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>以上是常见的使用情境，B 存了一个 class A 的参考。<code>A&amp; a</code></p>
+<p>我们可以改写成这样，将 include 移动到 B.cpp 实作文件中。 这是因为， 等这类东西的大小是固定的，所以在定义时不需要知道实际 class A 的大小，只需先告知 compiler 有这个 class 即可。<code>A&amp; </code> <code>A*</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">/// B.h
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span>; <span style="color:#75715e">//&lt; forward declare !
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> {
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">// ...skip
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> <span style="color:#66d9ef">private</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> A<span style="color:#f92672">&amp;</span> a;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/// B.cpp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;A.h&#34;</span><span style="color:#75715e">
+</span></span></span></code></pre></div><p>如此一来，当你变更 A.h 时，B.h 内容并不会改变，也就不会触发 C 需要重新编译拉，可喜可贺~</p>
+<p>在大量使用这个技巧以后，我所测试的项目进步幅度也是非常明显，更动A.h原本会牵动54个档案需要重编译，改完以后则只会牵动29个档案，自然编译速度也就变快了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># before use fwd v.s. after use fwd</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -j 6 incremental build, w/o ccache, unit in second</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>touch A.h<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>before <span style="color:#f92672">=</span> <span style="color:#ae81ff">303</span> <span style="color:#f92672">(</span>trigger <span style="color:#ae81ff">54</span> files rebuild<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>after  <span style="color:#f92672">=</span> <span style="color:#ae81ff">178</span> <span style="color:#f92672">(</span>trigger <span style="color:#ae81ff">29</span> files rebuild<span style="color:#f92672">)</span>
+</span></span></code></pre></div><h1 id="unity-build">Unity Build</h1>
+<p>Unity build 又称 Jumbo build， Mega build，其原理是透过将汇整成一个再一起执行编译，这样就是省下 N 个档案的编译时间 （具体而言是省下如 template 展开等原本每个 Translate Unit 都要做的事情）。<code>*.cppall.cpp</code></p>
+<p>CMake v3.16 开始就支持 Unity Build 的设定，他支持将 batch size 个文件先汇总成之后再进行编译。all_x.cpp</p>
+<p>不过这方法会遇到一些问题，由于这方法之原理说白了就是如此暴力，如果项目本身常常使用全局变量的话，这会很容易导致ODR （One definition rule） 错误。 所以也有可能不容易引入 Unity Build。<code>cat *.cpp &gt; all.cpp</code></p>
+<p>这个技巧我认为也是 CP 值十分之高的方法，几乎不用改程序 （如果项目用太多全局变量就要改很多😅） 却可以获得大幅的进步。 我测试的结果如下，可以看到无论是 incremental build 还是 clean build 都取得 50% 以上的进步。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e"># w/o unity build v.s. with unity build (batch_size=8)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># using -j 6, w/o ccache, unit in seconds
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>[touch A.h]
+</span></span><span style="display:flex;"><span>before <span style="color:#f92672">=</span> <span style="color:#ae81ff">242</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#ae81ff">38</span> tasks
+</span></span><span style="display:flex;"><span>after  <span style="color:#f92672">=</span> <span style="color:#ae81ff">167</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#ae81ff">18</span> tasks
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[clean build]
+</span></span><span style="display:flex;"><span>before <span style="color:#f92672">=</span> <span style="color:#ae81ff">420</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#ae81ff">111</span> tasks
+</span></span><span style="display:flex;"><span>after  <span style="color:#f92672">=</span> <span style="color:#ae81ff">224</span> <span style="color:#960050;background-color:#1e0010">#</span>  <span style="color:#ae81ff">47</span> tasks
+</span></span></code></pre></div><h1 id="better-linker">Better linker</h1>
+<p>编译的最后阶段是 linking，这部分可以替换成比较厉害的 linker，市面上目前有三种较有名的 linker</p>
+<ul>
+<li>ld (gcc default)</li>
+<li>gold</li>
+<li>lld</li>
+<li></li>
+</ul>
+<p>要替换使用 linker 只需要在 compile flag 加上即可。 详细可参考 gcc document。 而我实测不同 linker 表现如下，fuse-ld=&lt;linker_name&gt;</p>
+<pre tabindex="0"><code class="language-ba" data-lang="ba"># rebuild using single thread, unit in second
+# [1/1] Linking CXX executable main
+[linker]
+ld   = 25.4
+gold = 11.6
+lld  =  5.8
+</code></pre><p>使用更强的 linker 虽然使 linking time 进步许多，但对整个项目的 compile time 而言其实占比不是很大，相较于前面几个章节算是进步较小的技巧。 （但 CP 值也是很高，只要改一个 compile flag）</p>
+<h1 id="disable-var-tracking-for-huge-variable-object">Disable var-tracking for huge variable object</h1>
+<p>我们可以通过 gcc flag 来剖析编译各个阶段的耗时，然后针对各个耗时大的改善。<code>-ftime-report</code></p>
+<p>我测试的项目中，有一个 auto-generate 的，该档案动辄数万行，每次编译该档案都会成为瓶颈。 从得知编译该档案耗时最大的部分是 var-tracking，var-tracking 是让 debug info 有更多信息的功能，但当项目中有巨大的变量时，这会让 compiling 速度大幅变慢。<code>unordered_map-ftime-report</code></p>
+<p>在对我那个数万行的档案拿掉 var-tracking 之后 （针对该文件加上一个flag） 结果如下，<code>unordered_map</code> <code>-ftime-report</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># gcc -ftime-report auto_gen.cpp</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># with var-tracking v.s. without var-tracking, sorted by usr time</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>before<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Time variable                                   usr           sys          wall               GGC
+</span></span><span style="display:flex;"><span> phase opt and generate             : 122.95 <span style="color:#f92672">(</span> 92%<span style="color:#f92672">)</span>   2.30 <span style="color:#f92672">(</span> 35%<span style="color:#f92672">)</span> 125.26 <span style="color:#f92672">(</span> 89%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">924305</span> kB <span style="color:#f92672">(</span> 46%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> var-tracking dataflow              :  71.39 <span style="color:#f92672">(</span> 53%<span style="color:#f92672">)</span>   0.15 <span style="color:#f92672">(</span>  2%<span style="color:#f92672">)</span>  71.57 <span style="color:#f92672">(</span> 51%<span style="color:#f92672">)</span>    <span style="color:#ae81ff">3714</span> kB <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> expand vars                        :  17.55 <span style="color:#f92672">(</span> 13%<span style="color:#f92672">)</span>   0.03 <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>  17.56 <span style="color:#f92672">(</span> 12%<span style="color:#f92672">)</span>    <span style="color:#ae81ff">8583</span> kB <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> phase parsing                      :   8.09 <span style="color:#f92672">(</span>  6%<span style="color:#f92672">)</span>   3.46 <span style="color:#f92672">(</span> 53%<span style="color:#f92672">)</span>  11.55 <span style="color:#f92672">(</span>  8%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">794986</span> kB <span style="color:#f92672">(</span> 40%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> alias stmt walking                 :   6.11 <span style="color:#f92672">(</span>  5%<span style="color:#f92672">)</span>   0.08 <span style="color:#f92672">(</span>  1%<span style="color:#f92672">)</span>   6.40 <span style="color:#f92672">(</span>  5%<span style="color:#f92672">)</span>     <span style="color:#ae81ff">678</span> kB <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> template instantiation             :   4.35 <span style="color:#f92672">(</span>  3%<span style="color:#f92672">)</span>   1.58 <span style="color:#f92672">(</span> 24%<span style="color:#f92672">)</span>   6.03 <span style="color:#f92672">(</span>  4%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">443040</span> kB <span style="color:#f92672">(</span> 22%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> phase lang. deferred               :   2.30 <span style="color:#f92672">(</span>  2%<span style="color:#f92672">)</span>   0.72 <span style="color:#f92672">(</span> 11%<span style="color:#f92672">)</span>   3.02 <span style="color:#f92672">(</span>  2%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">232700</span> kB <span style="color:#f92672">(</span> 12%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> var-tracking emit                  :   2.87 <span style="color:#f92672">(</span>  2%<span style="color:#f92672">)</span>   0.02 <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>   2.95 <span style="color:#f92672">(</span>  2%<span style="color:#f92672">)</span>   <span style="color:#ae81ff">20420</span> kB <span style="color:#f92672">(</span>  1%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> |overload resolution               :   3.18 <span style="color:#f92672">(</span>  2%<span style="color:#f92672">)</span>   1.26 <span style="color:#f92672">(</span> 19%<span style="color:#f92672">)</span>   4.50 <span style="color:#f92672">(</span>  3%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">330116</span> kB <span style="color:#f92672">(</span> 16%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> TOTAL                              : 134.16          6.54        140.82        <span style="color:#ae81ff">2005866</span> kB
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>after<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Time variable                                   usr           sys          wall               GGC
+</span></span><span style="display:flex;"><span> phase opt and generate             :  44.61 <span style="color:#f92672">(</span> 80%<span style="color:#f92672">)</span>   1.41 <span style="color:#f92672">(</span> 27%<span style="color:#f92672">)</span>  46.03 <span style="color:#f92672">(</span> 76%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">724840</span> kB <span style="color:#f92672">(</span> 41%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> expand vars                        :  18.45 <span style="color:#f92672">(</span> 33%<span style="color:#f92672">)</span>   0.02 <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>  18.46 <span style="color:#f92672">(</span> 30%<span style="color:#f92672">)</span>    <span style="color:#ae81ff">8567</span> kB <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> phase parsing                      :   8.32 <span style="color:#f92672">(</span> 15%<span style="color:#f92672">)</span>   3.12 <span style="color:#f92672">(</span> 59%<span style="color:#f92672">)</span>  11.45 <span style="color:#f92672">(</span> 19%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">794986</span> kB <span style="color:#f92672">(</span> 45%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> alias stmt walking                 :   6.39 <span style="color:#f92672">(</span> 12%<span style="color:#f92672">)</span>   0.11 <span style="color:#f92672">(</span>  2%<span style="color:#f92672">)</span>   6.52 <span style="color:#f92672">(</span> 11%<span style="color:#f92672">)</span>     <span style="color:#ae81ff">678</span> kB <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> template instantiation             :   4.38 <span style="color:#f92672">(</span>  8%<span style="color:#f92672">)</span>   1.44 <span style="color:#f92672">(</span> 27%<span style="color:#f92672">)</span>   5.93 <span style="color:#f92672">(</span> 10%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">443040</span> kB <span style="color:#f92672">(</span> 25%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> |overload resolution               :   3.27 <span style="color:#f92672">(</span>  6%<span style="color:#f92672">)</span>   0.97 <span style="color:#f92672">(</span> 18%<span style="color:#f92672">)</span>   4.51 <span style="color:#f92672">(</span>  7%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">330116</span> kB <span style="color:#f92672">(</span> 19%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> phase lang. deferred               :   2.27 <span style="color:#f92672">(</span>  4%<span style="color:#f92672">)</span>   0.70 <span style="color:#f92672">(</span> 13%<span style="color:#f92672">)</span>   2.97 <span style="color:#f92672">(</span>  5%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">232700</span> kB <span style="color:#f92672">(</span> 13%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> parser <span style="color:#f92672">(</span>global<span style="color:#f92672">)</span>                    :   1.89 <span style="color:#f92672">(</span>  3%<span style="color:#f92672">)</span>   0.90 <span style="color:#f92672">(</span> 17%<span style="color:#f92672">)</span>   3.05 <span style="color:#f92672">(</span>  5%<span style="color:#f92672">)</span>  <span style="color:#ae81ff">211250</span> kB <span style="color:#f92672">(</span> 12%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> tree SSA incremental               :   1.58 <span style="color:#f92672">(</span>  3%<span style="color:#f92672">)</span>   0.01 <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>   1.55 <span style="color:#f92672">(</span>  3%<span style="color:#f92672">)</span>     <span style="color:#ae81ff">259</span> kB <span style="color:#f92672">(</span>  0%<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> TOTAL                              :  55.49          5.27         60.81        <span style="color:#ae81ff">1761326</span> kB
+</span></span></code></pre></div><p>结果是从原本耗时134秒降低至耗时55秒，减少超过50%的时间。 这也使得该档案不会再是整个项目的瓶颈。</p>
+<h1 id="summary">Summary</h1>
+<p>本文尝试了许多技巧来加速编译所需的时间，总结各点如下列：</p>
+<ul>
+<li>Use [big improvement] <code>ccache</code></li>
+<li>Use forward declaration as more as possible [big improvement]</li>
+<li>Unity Build [big improvement]</li>
+<li>Use LLVM linker [good improvement]</li>
+<li>Disable var-tracking for huge variable object [good improvement]</li>
+<li>Pre-compiled headers [no improvement]</li>
+<li>Explicit template instantiation [no improvement]
+在爬文时网友提及 pre-compiled headers 以及 explicit （extern） template 也对减少编译时间有帮助，但实测并未有显著差异，故本文未提及，也许实际上是有用只是刚好不适用于我的环境之类的。</li>
+</ul>
+<h1 id="reference">Reference</h1>
+<ul>
+<li>Improving Compilation Time of C/C++ Projects</li>
+<li>“variable tracking” is eating my compile time!</li>
+<li>CMake Unity Build</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/c&#43;&#43;/" rel="tag">C&#43;&#43;</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="Corsair-cxs avatar" src="/img/gedu.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 Corsair-cxs</span>
+	</div>
+	<div class="authorbox__description">
+		简介
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/dev/c&#43;&#43;/8.toolkit/3.compiler/compiler_optimization_techniques/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">【转】谈谈编译期优化</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/misc/oh-my-posh/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">Windows安装posh</p>
+		</a>
+	</div>
+</nav>
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 版权归作者所有,如需转载请说明出处.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> 主题</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+<script src="/js/custom.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

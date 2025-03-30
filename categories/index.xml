@@ -17,11 +17,38 @@
     </item>
     
     <item>
-      <title>Development</title>
-      <link>https://corsair-cxs.github.io/categories/development/</link>
+      <title>MISC</title>
+      <link>https://corsair-cxs.github.io/categories/misc/</link>
       <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://corsair-cxs.github.io/categories/development/</guid>
+      <guid>https://corsair-cxs.github.io/categories/misc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Compile</title>
+      <link>https://corsair-cxs.github.io/categories/compile/</link>
+      <pubDate>Tue, 21 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/categories/compile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://corsair-cxs.github.io/categories/c&#43;&#43;/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/categories/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>操作系统</title>
+      <link>https://corsair-cxs.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Thu, 16 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://corsair-cxs.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
       <description></description>
     </item>
     
